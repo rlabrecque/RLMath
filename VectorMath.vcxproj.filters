@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\RLMath">
+      <UniqueIdentifier>{8340cc61-7555-4674-ac1a-17e8367b38b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty">
+      <UniqueIdentifier>{1c816059-b377-41cb-b094-d9fe1d54576b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\imgui">
+      <UniqueIdentifier>{5d00f57b-f6dc-4065-acb9-fe9b2428841f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\SDL2">
+      <UniqueIdentifier>{0afee640-3b56-4c9a-adee-c356027734a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\imgui\examples">
+      <UniqueIdentifier>{75c16a32-1458-4aa1-a582-90f155b7e217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\GL">
+      <UniqueIdentifier>{d81a90e4-492b-47c6-8340-9100b8928dde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\imgui\examples\sdl_opengl3_example">
+      <UniqueIdentifier>{b7adde38-6598-485c-ba0e-211c636bd661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ThirdParty\lest">
+      <UniqueIdentifier>{65d2516c-2d5c-4f2c-8bcb-7a6713e1ce58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\RLMath\RLMath.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\imconfig.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\imgui.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\imgui_internal.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\stb_rect_pack.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\stb_textedit.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\stb_truetype.h">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\GL\gl3w.h">
+      <Filter>Source Files\ThirdParty\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\GL\glcorearb.h">
+      <Filter>Source Files\ThirdParty\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h">
+      <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tests.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThirdParty\lest\lest.hpp">
+      <Filter>Source Files\ThirdParty\lest</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Geometry.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Vectors.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\imgui\imgui.cpp">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\imgui\imgui_demo.cpp">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\imgui\imgui_draw.cpp">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\GL\gl3w.c">
+      <Filter>Source Files\ThirdParty\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
+      <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLMath\RLMath.cpp">
+      <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ThirdParty\imgui\LICENSE">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </None>
+    <None Include="src\ThirdParty\imgui\README.md">
+      <Filter>Source Files\ThirdParty\imgui</Filter>
+    </None>
+    <None Include="src\RLMath\Matrix.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </None>
+  </ItemGroup>
+</Project>
