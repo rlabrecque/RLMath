@@ -29,6 +29,9 @@
     <Filter Include="Source Files\ThirdParty\lest">
       <UniqueIdentifier>{65d2516c-2d5c-4f2c-8bcb-7a6713e1ce58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{681ede4a-c0ee-4c70-bb8c-875d3922e901}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RLMath\RLMath.h">
@@ -64,13 +67,7 @@
     <ClInclude Include="src\Tests.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Interface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ThirdParty\lest\lest.hpp">
@@ -81,6 +78,21 @@
     </ClInclude>
     <ClInclude Include="src\RLMath\Vectors.inl">
       <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\CSierpinskiTriangle.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\CGeometryPlayground.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CUserInterface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CSceneManager.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -102,17 +114,32 @@
     <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
       <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RLMath\RLMath.cpp">
       <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\CGeometryPlayground.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CUserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLMath\Vectors.cpp">
+      <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLMath\Geometry.cpp">
+      <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CSceneManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

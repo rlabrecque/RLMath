@@ -18,4 +18,15 @@ struct Ray {
 	bool operator==( const Ray& other ) const {
 		return (position == other.position && direction == other.direction);
 	}
+
+	inline const char* ToString() const {
+		static char str[47 * (sizeof( Ray ) / sizeof( float )) + 10];
+		snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", position.x, position.y, direction.x, direction.y );
+
+		return str;
+	}
 };
+
+
+
+Vec2 GetClosestPointOnRay( Ray ray, Vec2 point );

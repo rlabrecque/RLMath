@@ -52,7 +52,7 @@ struct Vec2 {
 	static float Dot( const Vec2 v1, const Vec2 v2 );
 
 	inline const char* ToString() const {
-		static char str[47 * (sizeof(data) / sizeof(float)) + 5];
+		static char str[47 * (sizeof( Vec2 ) / sizeof( float )) + 5];
 		snprintf( str, sizeof( str ), "(%f, %f)", x, y );
 
 		return str;
@@ -108,7 +108,7 @@ struct Vec3 {
 	static float Dot( const Vec3 v1, const Vec3 v2 );
 
 	inline const char* ToString() const {
-		static char str[47 * (sizeof( data ) / sizeof( float )) + 5];
+		static char str[47 * (sizeof( Vec3 ) / sizeof( float )) + 5];
 		snprintf( str, sizeof( str ), "(%f, %f, %f)", x, y, z );
 
 		return str;
@@ -159,7 +159,7 @@ struct Vec4 {
 
 
 	inline const char* ToString() const {
-		static char str[47 * (sizeof( data ) / sizeof( float )) + 5];
+		static char str[47 * (sizeof( Vec4 ) / sizeof(float)) + 5];
 		snprintf( str, sizeof( str ), "(%f, %f, %f, %f)", x, y, z, w );
 
 		return str;
@@ -229,11 +229,11 @@ Vec2 Vec2::operator/=( const float scalar ) {
 }
 
 float Vec2::magnitude() const {
-	return RL_sqrt( (x * x) + (y * y) );
+	return RL_sqrt( Dot( *this, *this ) );
 }
 
 float Vec2::squaredMagnitude() const {
-	return (x * x) + (y * y);
+	return Dot( *this, *this );
 }
 
 Vec2 Vec2::normalized() const {
@@ -317,11 +317,11 @@ Vec3 Vec3::operator/=( const float scalar ) {
 }
 
 float Vec3::magnitude() const {
-	return RL_sqrt( (x * x) + (y * y) + (z *z) );
+	return RL_sqrt( Dot( *this, *this ) );
 }
 
 float Vec3::squaredMagnitude() const {
-	return (x * x) + (y * y) + (z *z);
+	return Dot(*this, *this);
 }
 
 Vec3 Vec3::normalized() const {
@@ -409,11 +409,11 @@ Vec4 Vec4::operator/=( const float scalar ) {
 }
 
 float Vec4::magnitude() const {
-	return RL_sqrt( (x * x) + (y * y) + (z *z) + (w * w) );
+	return RL_sqrt( Dot(*this, *this) );
 }
 
 float Vec4::squaredMagnitude() const {
-	return (x * x) + (y * y) + (z * z) + (w * w);
+	return Dot( *this, *this );
 }
 
 Vec4 Vec4::normalized() const {

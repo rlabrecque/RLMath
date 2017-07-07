@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>src\RLMath\;src\ThirdParty\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\RLMath\;src\ThirdParty\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +122,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\RLMath\;src\ThirdParty\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,7 +141,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\RLMath\;src\ThirdParty\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,12 +152,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Interface.h" />
+    <ClInclude Include="src\CUserInterface.h" />
     <ClInclude Include="src\main.h" />
-    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\CRenderer.h" />
     <ClInclude Include="src\RLMath\Geometry.inl" />
     <ClInclude Include="src\RLMath\RLMath.h" />
     <ClInclude Include="src\RLMath\Vectors.inl" />
+    <ClInclude Include="src\CSceneManager.h" />
+    <ClInclude Include="src\Scenes\CGeometryPlayground.h" />
+    <ClInclude Include="src\Scenes\CSierpinskiTriangle.h" />
     <ClInclude Include="src\Tests.h" />
     <ClInclude Include="src\ThirdParty\GL\gl3w.h" />
     <ClInclude Include="src\ThirdParty\GL\glcorearb.h" />
@@ -171,10 +174,15 @@
     <ClInclude Include="src\ThirdParty\lest\lest.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Interface.cpp" />
+    <ClCompile Include="src\CUserInterface.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\renderer.cpp" />
+    <ClCompile Include="src\CRenderer.cpp" />
+    <ClCompile Include="src\RLMath\Geometry.cpp" />
     <ClCompile Include="src\RLMath\RLMath.cpp" />
+    <ClCompile Include="src\RLMath\Vectors.cpp" />
+    <ClCompile Include="src\CSceneManager.cpp" />
+    <ClCompile Include="src\Scenes\CGeometryPlayground.cpp" />
+    <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp" />
     <ClCompile Include="src\Tests.cpp" />
     <ClCompile Include="src\ThirdParty\GL\gl3w.c" />
     <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp" />

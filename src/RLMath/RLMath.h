@@ -69,8 +69,8 @@ T RL_sqrt( const T vec ) {
 }
 
 #include <Vectors.inl>
-#include <Geometry.inl>
 #include <Matrix.inl>
+#include <Geometry.inl>
 
 /// GARBAGE DAY
 #include <functional>
