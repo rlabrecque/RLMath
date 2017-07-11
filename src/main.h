@@ -25,3 +25,4 @@ extern bool g_bMouseMovedThisFrame;
 extern bool g_MouseButton[3];
 extern bool g_MouseButtonDownThisFrame[3];
 extern bool g_MouseButtonUpThisFrame[3];
+extern const unsigned char *g_KeyboardState;

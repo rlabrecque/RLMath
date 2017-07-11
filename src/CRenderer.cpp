@@ -131,7 +131,7 @@ void CRenderer::Shutdown() {
 
 void CRenderer::RunFrame( CSceneManager& sceneManager, CUserInterface& userInterface) {
 	glViewport( 0, 0, WindowWidth, WindowHeight );
-	glClearColor( 0.75f, 0.75f, 0.75f, 1 );
+	glClearColor( 0.1f, 0.1f, 0.1f, 1 );
 	glClear( GL_COLOR_BUFFER_BIT );
 
 	bInDrawing = true;
@@ -217,4 +217,32 @@ void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 botto
 
 void CRenderer::DrawRay( Ray ray ) {
 	DrawLine( ray.position, ray.direction );
+}
+
+void CRenderer::DrawAABB( AABB aabb ) {
+	Vec2 mins = aabb.mins();
+	Vec2 maxs = aabb.maxs();
+
+	DrawLine( mins, Vec2( mins.x, maxs.y ) );
+	DrawLine( mins, Vec2( maxs.x, mins.y ) );
+	DrawLine( maxs, Vec2( mins.x, maxs.y ) );
+	DrawLine( maxs, Vec2( maxs.x, mins.y ) );
+}
+
+void CRenderer::DrawCircle( Circle circle ) {
+	float r2 = circle.radius * circle.radius;
+	for ( float cx = circle.radius, sy = 0; sy < cx; ++sy) {
+		DrawPoint( Vec2( circle.center.x + cx, circle.center.y + sy ) );
+		DrawPoint( Vec2( circle.center.x + cx, circle.center.y - sy ) );
+		DrawPoint( Vec2( circle.center.x - cx, circle.center.y + sy ) );
+		DrawPoint( Vec2( circle.center.x - cx, circle.center.y - sy ) );
+		DrawPoint( Vec2( circle.center.x + sy, circle.center.y + cx ) );
+		DrawPoint( Vec2( circle.center.x + sy, circle.center.y - cx ) );
+		DrawPoint( Vec2( circle.center.x - sy, circle.center.y + cx ) );
+		DrawPoint( Vec2( circle.center.x - sy, circle.center.y - cx ) );
+
+		if ( RL_abs( (cx * cx) + (sy * sy) - r2 ) > RL_abs( cx * cx + (sy - 1) * (sy - 1) - r2) ) {
+			--cx;
+		}
+	}
 }

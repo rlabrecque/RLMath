@@ -11,6 +11,8 @@ bool g_MouseButton[3] = { false, false, false };
 bool g_MouseButtonDownThisFrame[3] = { false, false, false };
 bool g_MouseButtonUpThisFrame[3] = { false, false, false };
 
+const unsigned char* g_KeyboardState;
+
 static CRenderer g_Renderer;
 static CUserInterface g_UserInterface;
 static CSceneManager g_SceneManager;
@@ -91,6 +93,8 @@ void RunFrame() {
 	SDL_GetMouseState( &x, &y );
 	g_MousePosition.x = (float)x;
 	g_MousePosition.y = (float)y;
+
+	g_KeyboardState = SDL_GetKeyboardState( NULL );
 	
 	g_SceneManager.GetCurrentScene()->OnUpdate();
 }

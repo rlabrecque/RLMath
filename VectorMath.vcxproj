@@ -155,8 +155,10 @@
     <ClInclude Include="src\CUserInterface.h" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\CRenderer.h" />
+    <ClInclude Include="src\RLMath\Geometry.h" />
     <ClInclude Include="src\RLMath\Geometry.inl" />
     <ClInclude Include="src\RLMath\RLMath.h" />
+    <ClInclude Include="src\RLMath\Vectors.h" />
     <ClInclude Include="src\RLMath\Vectors.inl" />
     <ClInclude Include="src\CSceneManager.h" />
     <ClInclude Include="src\Scenes\CGeometryPlayground.h" />
@@ -178,7 +180,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\CRenderer.cpp" />
     <ClCompile Include="src\RLMath\Geometry.cpp" />
-    <ClCompile Include="src\RLMath\RLMath.cpp" />
     <ClCompile Include="src\RLMath\Vectors.cpp" />
     <ClCompile Include="src\CSceneManager.cpp" />
     <ClCompile Include="src\Scenes\CGeometryPlayground.cpp" />
@@ -191,7 +192,8 @@
     <ClCompile Include="src\ThirdParty\imgui\imgui_draw.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\RLMath\Matrix.inl" />
+    <None Include="src\RLMath\Matrix.h" />
+    <None Include="src\RLMath\RLMath.inl" />
     <None Include="src\ThirdParty\imgui\LICENSE" />
     <None Include="src\ThirdParty\imgui\README.md" />
   </ItemGroup>

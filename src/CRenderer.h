@@ -14,7 +14,10 @@ public:
 	void DrawPoint( Vec2 point );
 	void DrawLine( Vec2 start, Vec2 end );
 	void DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 bottomLeftVertex );
+	
 	void DrawRay( Ray ray );
+	void DrawAABB( AABB aabb );
+	void DrawCircle( Circle circle );
 
 private:
 	bool bInDrawing = false;

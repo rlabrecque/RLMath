@@ -3,6 +3,11 @@
 #include <float.h>
 #include <stdio.h>
 #include <cstdio>
+#include <math.h>
+
+struct Vec2;
+struct Vec3;
+struct Vec4;
 
 template <typename T, size_t N>
 constexpr size_t countof( T( &)[N] ) {
@@ -38,39 +43,39 @@ constexpr float RL_abs( const float f ) {
 	float ret = f;
 	return reinterpret_cast<float&>(reinterpret_cast<int&>(ret) &= ~(1 << 31));
 }
-
-constexpr float RL_abs( const int f ) {
-	return RL_abs( static_cast<float>(f) );
-}
-
-template <typename T>
-constexpr T RL_abs( const T vec ) {
-	T ret;
-	for ( int i = 0; i < sizeof( T ) / sizeof( float ); ++i ) {
-		ret[i] = RL_abs( vec[i] );
-	}
-
-	return ret;
-}
+inline Vec2 RL_abs( const Vec2 vec );
+inline Vec3 RL_abs( const Vec3 vec );
+inline Vec4 RL_abs( const Vec4 vec );
 
 //=================
 // sqrt
 //=================
-float RL_sqrt( const float f );
-float RL_sqrt( const int f );
-template <typename T>
-T RL_sqrt( const T vec ) {
-	T ret;
-	for ( int i = 0; i < sizeof( T ) / sizeof( float ); ++i ) {
-		ret[i] = RL_sqrt( vec[i] );
-	}
+inline float RL_sqrt( const float f );
+inline Vec2 RL_sqrt( const Vec2 vec );
+inline Vec3 RL_sqrt( const Vec3 vec );
+inline Vec4 RL_sqrt( const Vec4 vec );
 
-	return ret;
-}
+//=================
+// sin
+//=================
+inline float RL_sin( const float f );
+inline Vec2 RL_sin( const Vec2 vec );
+inline Vec3 RL_sin( const Vec3 vec );
+inline Vec4 RL_sin( const Vec4 vec );
 
-#include <Vectors.inl>
-#include <Matrix.inl>
-#include <Geometry.inl>
+//=================
+// cos
+//=================
+inline float RL_cos( const float f );
+inline Vec2 RL_cos( const Vec2 vec );
+inline Vec3 RL_cos( const Vec3 vec );
+inline Vec4 RL_cos( const Vec4 vec );
+
+#include "Vectors.h"
+#include "Matrix.h"
+#include "Geometry.h"
+
+#include "RLMath.inl"
 
 /// GARBAGE DAY
 #include <functional>
@@ -87,6 +92,22 @@ namespace std {
 		size_t operator()( Ray const& ray ) const {
 			const size_t h1( std::hash<Vec2>{}(ray.direction) );
 			const size_t h2( std::hash<Vec2>{}(ray.position) );
+			return h1 ^ (h2 << 1);
+		}
+	};
+
+	template<> struct hash<AABB> {
+		size_t operator()( AABB const& aabb ) const {
+			const size_t h1( std::hash<Vec2>{}(aabb.center) );
+			const size_t h2( std::hash<Vec2>{}(aabb.extents) );
+			return h1 ^ (h2 << 1);
+		}
+	};
+
+	template<> struct hash<Circle> {
+		size_t operator()( Circle const& aabb ) const {
+			const size_t h1( std::hash<Vec2>{}(aabb.center) );
+			const size_t h2( std::hash<float>{}(aabb.radius) );
 			return h1 ^ (h2 << 1);
 		}
 	};

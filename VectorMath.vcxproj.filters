@@ -94,6 +94,12 @@
     <ClInclude Include="src\CSceneManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\RLMath\Vectors.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Geometry.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -116,9 +122,6 @@
     </ClCompile>
     <ClCompile Include="src\Tests.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RLMath\RLMath.cpp">
-      <Filter>Source Files\RLMath</Filter>
     </ClCompile>
     <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp">
       <Filter>Source Files\Scenes</Filter>
@@ -149,7 +152,10 @@
     <None Include="src\ThirdParty\imgui\README.md">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </None>
-    <None Include="src\RLMath\Matrix.inl">
+    <None Include="src\RLMath\Matrix.h">
+      <Filter>Source Files\RLMath</Filter>
+    </None>
+    <None Include="src\RLMath\RLMath.inl">
       <Filter>Source Files\RLMath</Filter>
     </None>
   </ItemGroup>
