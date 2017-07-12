@@ -38,14 +38,10 @@ constexpr float RL_Rad2Deg( const float rad ) {
 //=================
 // abs
 //=================
-constexpr float RL_abs( const float f ) {
-	// todo remove '=' and this temp
-	float ret = f;
-	return reinterpret_cast<float&>(reinterpret_cast<int&>(ret) &= ~(1 << 31));
-}
-inline Vec2 RL_abs( const Vec2 vec );
-inline Vec3 RL_abs( const Vec3 vec );
-inline Vec4 RL_abs( const Vec4 vec );
+constexpr float RL_abs( const float f );
+constexpr Vec2 RL_abs( const Vec2 vec );
+constexpr Vec3 RL_abs( const Vec3 vec );
+constexpr Vec4 RL_abs( const Vec4 vec );
 
 //=================
 // sqrt

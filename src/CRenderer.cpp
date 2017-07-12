@@ -216,7 +216,7 @@ void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 botto
 }
 
 void CRenderer::DrawRay( Ray ray ) {
-	DrawLine( ray.position, ray.direction );
+	DrawLine( ray.position, ray.position + ray.direction * 10000 );
 }
 
 void CRenderer::DrawAABB( AABB aabb ) {

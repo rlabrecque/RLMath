@@ -33,17 +33,17 @@ void CGeometryPlayground::OnUpdate() {
 	if ( g_MouseButtonUpThisFrame[0] ) {
 		printf( "%s\n", m_StartPos.ToString() );
 		switch ( m_InsertMode ) {
-		case k_EGeometryInsertMode_Point:
+		case k_EGeometry_Point:
 			m_PointsDict[g_MousePosition] = { m_DrawColor, false };
 			break;
-		case k_EGeometryInsertMode_Ray:
-			m_RaysDict[Ray( m_StartPos, (m_StartPos + ((g_MousePosition - m_StartPos).normalized() * 10000)) )] = { m_DrawColor, false };
+		case k_EGeometry_Ray:
+			m_RaysDict[Ray( m_StartPos, g_MousePosition - m_StartPos )] = { m_DrawColor, false };
 			break;
-		case k_EGeometryInsertMode_AABB:
+		case k_EGeometry_AABB:
 			m_AABBsDict[AABB::FromMinsMaxs( m_StartPos, g_MousePosition )] = { m_DrawColor, false };
 			break;
-		case k_EGeometryInsertMode_Circle:
-			m_CirclesDict[Circle( m_StartPos, (m_StartPos - g_MousePosition).magnitude())] = { m_DrawColor, false };
+		case k_EGeometry_Circle:
+			m_CirclesDict[Circle( m_StartPos, (m_StartPos - g_MousePosition).length())] = { m_DrawColor, false };
 			break;
 		}
 
@@ -58,10 +58,10 @@ void CGeometryPlayground::OnInterface() {
 		ClearGeometry();
 	}
 
-	ImGui::RadioButton( "Point", (int*)&m_InsertMode, k_EGeometryInsertMode_Point ); ImGui::SameLine();
-	ImGui::RadioButton( "Ray", (int*)&m_InsertMode, k_EGeometryInsertMode_Ray ); ImGui::SameLine();
-	ImGui::RadioButton( "AABB", (int*)&m_InsertMode, k_EGeometryInsertMode_AABB ); ImGui::SameLine();
-	ImGui::RadioButton( "Circle", (int*)&m_InsertMode, k_EGeometryInsertMode_Circle );
+	ImGui::RadioButton( "Point", (int*)&m_InsertMode, k_EGeometry_Point ); ImGui::SameLine();
+	ImGui::RadioButton( "Ray", (int*)&m_InsertMode, k_EGeometry_Ray ); ImGui::SameLine();
+	ImGui::RadioButton( "AABB", (int*)&m_InsertMode, k_EGeometry_AABB ); ImGui::SameLine();
+	ImGui::RadioButton( "Circle", (int*)&m_InsertMode, k_EGeometry_Circle );
 
 	ImGui::Separator();
 
@@ -70,10 +70,10 @@ void CGeometryPlayground::OnInterface() {
 
 	ImGui::Separator();
 
-	ImGui::CheckboxFlags( "Test Against Points", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometryInsertMode_Point );
-	ImGui::CheckboxFlags( "Test Against Rays", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometryInsertMode_Ray );
-	ImGui::CheckboxFlags( "Test Against AABBs", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometryInsertMode_AABB );
-	ImGui::CheckboxFlags( "Test Against Circles", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometryInsertMode_Circle );
+	ImGui::CheckboxFlags( "Test Against Points", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometry_Point );
+	ImGui::CheckboxFlags( "Test Against Rays", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometry_Ray );
+	ImGui::CheckboxFlags( "Test Against AABBs", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometry_AABB );
+	ImGui::CheckboxFlags( "Test Against Circles", (unsigned int*)&m_TestGeometry, (unsigned int)k_EGeometry_Circle );
 
 	ImGui::Separator();
 
@@ -87,7 +87,7 @@ void CGeometryPlayground::OnInterface() {
 	ImGui::PushItemWidth( -1 );
 	ImGui::ListBoxHeader( "##empty" );
 	switch ( m_InsertMode ) {
-	case k_EGeometryInsertMode_Point:
+	case k_EGeometry_Point:
 		for ( auto it = m_PointsDict.begin(); it != m_PointsDict.end(); ) {
 			if ( it->second.second ) { m_PointsDict.erase( it++ ); }
 			else {
@@ -96,7 +96,7 @@ void CGeometryPlayground::OnInterface() {
 			}
 		}
 		break;
-	case k_EGeometryInsertMode_Ray:
+	case k_EGeometry_Ray:
 		for ( auto it = m_RaysDict.begin(); it != m_RaysDict.end(); ) {
 			if ( it->second.second ) { m_RaysDict.erase( it++ ); }
 			else {
@@ -105,7 +105,7 @@ void CGeometryPlayground::OnInterface() {
 			}
 		}
 		break;
-	case k_EGeometryInsertMode_AABB:
+	case k_EGeometry_AABB:
 		for ( auto it = m_AABBsDict.begin(); it != m_AABBsDict.end(); ) {
 			if ( it->second.second ) { m_AABBsDict.erase( it++ ); }
 			else {
@@ -114,7 +114,7 @@ void CGeometryPlayground::OnInterface() {
 			}
 		}
 		break;
-	case k_EGeometryInsertMode_Circle:
+	case k_EGeometry_Circle:
 		for ( auto it = m_CirclesDict.begin(); it != m_CirclesDict.end(); ) {
 			if ( it->second.second ) { m_CirclesDict.erase( it++ ); }
 			else {
@@ -151,16 +151,16 @@ void CGeometryPlayground::OnRender( CRenderer& renderer ) const {
 	}
 	else {
 		switch ( m_InsertMode ) {
-		case k_EGeometryInsertMode_Point:
+		case k_EGeometry_Point:
 			RenderInsertPoint( renderer );
 			break;
-		case k_EGeometryInsertMode_Ray:
+		case k_EGeometry_Ray:
 			RenderInsertRay( renderer );
 			break;
-		case k_EGeometryInsertMode_AABB:
+		case k_EGeometry_AABB:
 			RenderInsertAABB( renderer );
 			break;
-		case k_EGeometryInsertMode_Circle:
+		case k_EGeometry_Circle:
 			RenderInsertCircle( renderer );
 			break;
 		}
@@ -174,7 +174,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer ) const {
 		renderer.SetDrawColor( point2.second.first );
 		renderer.DrawPoint( point2.first );
 
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
 			renderer.DrawLine( point, point2.first );
 		}
 	}
@@ -183,40 +183,48 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer ) const {
 		renderer.SetDrawColor( ray.second.first );
 		renderer.DrawRay( ray.first );
 
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Ray) && m_TestMode == k_EGeometryTestMode_Distance ) {
+		if ( (m_TestGeometry & k_EGeometry_Ray) && m_TestMode == k_EGeometryTestMode_Distance ) {
 			renderer.DrawLine( g_MousePosition, ray.first.GetClosestPoint( g_MousePosition ) );
 		}
 	}
 
 	for ( auto&& aabb : m_AABBsDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.first.ContainsPoint( point ) ) {
+		if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Collision && aabb.first.ContainsPoint( point ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
 			renderer.SetDrawColor( aabb.second.first );
 		}
 		renderer.DrawAABB( aabb.first );
+
+		if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
+			renderer.DrawLine( point, aabb.first.GetClosestPoint( point ) );
+		}
 	}
 
 	for ( auto&& circle : m_CirclesDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Collision && circle.first.ContainsPoint( point ) ) {
+		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && circle.first.ContainsPoint( point ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
 			renderer.SetDrawColor( circle.second.first );
 		}
 		renderer.DrawCircle( circle.first );
+
+		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Distance ) {
+			renderer.DrawLine( point, circle.first.GetClosestPoint( point ) );
+		}
 	}
 }
 
 void CGeometryPlayground::RenderInsertRay( CRenderer& renderer ) const {
-	Ray ray = Ray( m_StartPos, (m_StartPos + ((g_MousePosition - m_StartPos).normalized() * 10000)) );
+	Ray ray = Ray( m_StartPos, g_MousePosition - m_StartPos );
 
 	for ( auto&& point : m_PointsDict ) {
 		renderer.SetDrawColor( point.second.first );
 		renderer.DrawPoint( point.first );
 
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
 			renderer.DrawLine( point.first, ray.GetClosestPoint( point.first ) );
 		}
 	}
@@ -238,7 +246,7 @@ void CGeometryPlayground::RenderInsertRay( CRenderer& renderer ) const {
 
 	renderer.SetDrawColor( m_DrawColor );
 	renderer.DrawRay( ray );
-	
+
 	/*
 	if ( m_bTestAgainstRays ) {
 	for ( auto&& ray : m_RaysDict ) {
@@ -252,7 +260,7 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer ) const {
 	AABB aabb = AABB::FromMinsMaxs( m_StartPos, g_MousePosition );
 
 	for ( auto&& point : m_PointsDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.ContainsPoint( point.first ) ) {
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.ContainsPoint( point.first ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
@@ -267,7 +275,7 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer ) const {
 	}
 
 	for ( auto&& aabb2 : m_AABBsDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.Intersects( aabb2.first ) ) {
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.Intersects( aabb2.first ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
@@ -286,16 +294,20 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer ) const {
 }
 
 void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer ) const {
-	Circle circle = Circle( m_StartPos, (m_StartPos - g_MousePosition).magnitude() );
+	Circle circle = Circle( m_StartPos, (m_StartPos - g_MousePosition).length() );
 
 	for ( auto&& point : m_PointsDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Point) && m_TestMode == k_EGeometryTestMode_Collision && circle.ContainsPoint( point.first ) ) {
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && circle.ContainsPoint( point.first ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
 			renderer.SetDrawColor( point.second.first );
 		}
 		renderer.DrawPoint( point.first );
+
+		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
+			renderer.DrawLine( point.first, circle.GetClosestPoint( point.first ) );
+		}
 	}
 
 	for ( auto&& ray : m_RaysDict ) {
@@ -309,13 +321,17 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer ) const {
 	}
 
 	for ( auto&& circle2 : m_CirclesDict ) {
-		if ( (m_TestGeometry & k_EGeometryInsertMode_Circle) && m_TestMode == k_EGeometryTestMode_Collision && circle.Intersects( circle2.first ) ) {
+		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && circle.Intersects( circle2.first ) ) {
 			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
 		}
 		else {
 			renderer.SetDrawColor( circle2.second.first );
 		}
 		renderer.DrawCircle( circle2.first );
+
+		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Distance ) {
+			renderer.DrawLine( circle2.first.GetClosestPoint( circle ), circle.GetClosestPoint( circle2.first ) );
+		}
 	}
 
 	renderer.SetDrawColor( m_DrawColor );

@@ -12,8 +12,8 @@ struct Ray {
 	Vec2 direction;
 
 	// Constructors
-	Ray();
-	explicit Ray( Vec2 _position, Vec2 _direction );
+	constexpr Ray();
+	inline explicit Ray( Vec2 _position, Vec2 _direction );
 
 	// Overrides
 	inline bool operator==( const Ray& other ) const;
@@ -22,11 +22,10 @@ struct Ray {
 	inline const char* ToString() const;
 	
 	// Distance and Collision detection
-	Vec2 Ray::GetClosestPoint( Vec2 point ) const;
+	inline Vec2 Ray::GetClosestPoint( Vec2 point ) const;
 
 	// Static functions
 };
-
 
 //=====================================================================================================================
 // AABB
@@ -36,8 +35,8 @@ struct AABB {
 	Vec2 extents;
 
 	// Constructors
-	AABB();
-	explicit AABB( Vec2 _center, Vec2 _extents);
+	constexpr AABB();
+	constexpr explicit AABB( Vec2 _center, Vec2 _extents);
 
 	// Overrides
 	inline bool operator==( const AABB& other ) const;
@@ -53,6 +52,7 @@ struct AABB {
 	// Distance and Collision detection
 	//inline float DistanceTo( Vec2 point ) const;
 	//inline float DistanceTo( AABB other ) const;
+	inline Vec2 GetClosestPoint( Vec2 point ) const;
 	inline bool ContainsPoint( Vec2 point ) const;
 	inline bool Intersects( AABB other ) const;
 
@@ -68,8 +68,8 @@ struct Circle {
 	float radius;
 
 	// Constructors
-	Circle();
-	explicit Circle( Vec2 _center, float _radius );
+	constexpr Circle();
+	constexpr explicit Circle( Vec2 _center, float _radius );
 
 	// Overrides
 	inline bool operator==( const Circle& other ) const;
@@ -80,6 +80,8 @@ struct Circle {
 	// Distance and Collision detection
 	//inline float DistanceTo( Vec2 point ) const;
 	//inline float DistanceTo( Circle other ) const;
+	inline Vec2 GetClosestPoint( Vec2 point ) const;
+	inline Vec2 GetClosestPoint( Circle other ) const;
 	inline bool ContainsPoint( Vec2 point ) const;
 	inline bool Intersects( Circle other ) const;
 

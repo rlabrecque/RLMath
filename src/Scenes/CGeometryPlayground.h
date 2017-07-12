@@ -20,12 +20,12 @@ private:
 	void RenderInsertCircle( CRenderer& renderer ) const;
 	void ClearGeometry();
 
-	enum EGeometryInsertMode : unsigned int {
-		k_EGeometryInsertMode_None = 0,
-		k_EGeometryInsertMode_Point = 1,
-		k_EGeometryInsertMode_Ray = 2,
-		k_EGeometryInsertMode_AABB = 4,
-		k_EGeometryInsertMode_Circle = 8,
+	enum EGeometry : unsigned int {
+		k_EGeometry_None = 0,
+		k_EGeometry_Point = 1,
+		k_EGeometry_Ray = 2,
+		k_EGeometry_AABB = 4,
+		k_EGeometry_Circle = 8,
 	};
 
 	enum EGeometryTestMode : unsigned int {
@@ -40,8 +40,8 @@ private:
 	std::unordered_map<AABB, std::pair<Vec4, bool>> m_AABBsDict;
 	std::unordered_map<Circle, std::pair<Vec4, bool>> m_CirclesDict;
 
-	EGeometryInsertMode m_InsertMode = k_EGeometryInsertMode_Point;
-	EGeometryInsertMode m_TestGeometry = (EGeometryInsertMode)0xFFFFFFFF;
+	EGeometry m_InsertMode = k_EGeometry_Point;
+	EGeometry m_TestGeometry = (EGeometry)~k_EGeometry_None;
 	EGeometryTestMode m_TestMode = k_EGeometryTestMode_Collision;
 	Vec2 m_StartPos;
 };

@@ -12,10 +12,11 @@ struct Vec2 {
 		};
 	};
 
-	Vec2();
-	explicit Vec2( float _x, float _y );
-	explicit Vec2( Vec3 other );
-	explicit Vec2( Vec4 other );
+	// Constructors
+	constexpr Vec2();
+	constexpr explicit Vec2( float _x, float _y );
+	constexpr explicit Vec2( Vec3 other );
+	constexpr explicit Vec2( Vec4 other );
 
 	static const Vec2& zero;
 	static const Vec2& one;
@@ -24,6 +25,7 @@ struct Vec2 {
 	static const Vec2& left;
 	static const Vec2& right;
 
+	// Overrides
 	inline float& operator[]( int index );
 	inline const float& operator[]( int index ) const;
 
@@ -40,19 +42,16 @@ struct Vec2 {
 	inline Vec2 operator/ ( const float scalar ) const;
 	inline Vec2 operator/=( const float scalar );
 
-	inline float magnitude() const;
-	inline float squaredMagnitude() const;
+	// Custom
+	inline const char* ToString() const;
+	inline float length() const;
+	inline float squaredLength() const;
 	inline Vec2 normalized() const;
 	inline Vec2& Normalize();
 
-	static float Dot( const Vec2 v1, const Vec2 v2 );
-
-	inline const char* ToString() const {
-		static char str[47 * (sizeof( Vec2 ) / sizeof( float )) + 5];
-		snprintf( str, sizeof( str ), "(%f, %f)", x, y );
-
-		return str;
-	}
+	// Static functions
+	static inline float Dot( const Vec2 v1, const Vec2 v2 );
+	static inline Vec2 Scale( const Vec2 v1, const Vec2 v2 );
 };
 
 struct Vec3 {
@@ -66,10 +65,11 @@ struct Vec3 {
 		};
 	};
 
-	Vec3();
-	explicit Vec3( float _x, float _y, float _z );
-	explicit Vec3( Vec2 other );
-	explicit Vec3( Vec4 other );
+	// Constructors
+	constexpr Vec3();
+	constexpr explicit Vec3( float _x, float _y, float _z );
+	constexpr explicit Vec3( Vec2 other );
+	constexpr explicit Vec3( Vec4 other );
 
 	static const Vec3& zero;
 	static const Vec3& one;
@@ -80,6 +80,7 @@ struct Vec3 {
 	static const Vec3& back;
 	static const Vec3& forward;
 
+	// Overrides
 	inline float& operator[]( int index );
 	inline const float& operator[]( int index ) const;
 
@@ -96,19 +97,16 @@ struct Vec3 {
 	inline Vec3 operator/ ( const float scalar ) const;
 	inline Vec3 operator/=( const float scalar );
 
-	inline float magnitude() const;
-	inline float squaredMagnitude() const;
+	// Custom
+	inline const char* ToString() const;
+	inline float length() const;
+	inline float squaredLength() const;
 	inline Vec3 normalized() const;
 	inline Vec3& Normalize();
 
-	static float Dot( const Vec3 v1, const Vec3 v2 );
-
-	inline const char* ToString() const {
-		static char str[47 * (sizeof( Vec3 ) / sizeof( float )) + 5];
-		snprintf( str, sizeof( str ), "(%f, %f, %f)", x, y, z );
-
-		return str;
-	}
+	// Static functions
+	static inline float Dot( const Vec3 v1, const Vec3 v2 );
+	static inline Vec3 Scale( const Vec3 v1, const Vec3 v2 );
 };
 
 struct Vec4 {
@@ -122,14 +120,16 @@ struct Vec4 {
 		};
 	};
 
-	Vec4();
-	explicit Vec4( float _x, float _y, float _z, float _w );
-	explicit Vec4( Vec2 other );
-	explicit Vec4( Vec3 other );
+	// Constructors
+	constexpr Vec4();
+	constexpr explicit Vec4( float _x, float _y, float _z, float _w );
+	constexpr explicit Vec4( Vec2 other );
+	constexpr explicit Vec4( Vec3 other );
 
 	static const Vec4& zero;
 	static const Vec4& one;
 
+	// Overrides
 	inline float& operator[]( int index );
 	inline const float& operator[]( int index ) const;
 
@@ -146,20 +146,16 @@ struct Vec4 {
 	inline Vec4 operator/ ( const float scalar ) const;
 	inline Vec4 operator/=( const float scalar );
 
-	inline float magnitude() const;
-	inline float squaredMagnitude() const;
+	// Custom
+	inline const char* ToString() const;
+	inline float length() const;
+	inline float squaredLength() const;
 	inline Vec4 normalized() const;
 	inline Vec4& Normalize();
 
-	static float Dot( const Vec4 v1, const Vec4 v2 );
-
-
-	inline const char* ToString() const {
-		static char str[47 * (sizeof( Vec4 ) / sizeof( float )) + 5];
-		snprintf( str, sizeof( str ), "(%f, %f, %f, %f)", x, y, z, w );
-
-		return str;
-	}
+	// Static functions
+	static inline float Dot( const Vec4 v1, const Vec4 v2 );
+	static inline Vec4 Scale( const Vec4 v1, const Vec4 v2 );
 };
 
 #include "Vectors.inl"

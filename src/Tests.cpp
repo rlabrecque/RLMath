@@ -118,18 +118,18 @@ CASE( "Test operator /=" )
 	EXPECT( (Vec4( 1000, -1000, 100, 1300 ) /= 2) == Vec4( 500, -500, 50, 650 ) );
 },
 
-CASE( "Verify magnitude" )
+CASE( "Verify length" )
 {
-	EXPECT( Vec2( 1, 1 ).magnitude() == 1.41421356237f );
-	EXPECT( Vec3( 2, 1, 2 ).magnitude() == 3 );
-	EXPECT( Vec4( 2, 1, 2, 9 ).magnitude() == 9.48683298051f );
+	EXPECT( Vec2( 1, 1 ).length() == 1.41421356237f );
+	EXPECT( Vec3( 2, 1, 2 ).length() == 3 );
+	EXPECT( Vec4( 2, 1, 2, 9 ).length() == 9.48683298051f );
 },
 
-CASE( "Verify sqrMagnitude" )
+CASE( "Verify squaredLength" )
 {
-	EXPECT( Vec2( 1, 1 ).squaredMagnitude() == 2 );
-	EXPECT( Vec3( 2, 1, 2 ).squaredMagnitude() == 9 );
-	EXPECT( Vec4( 2, 1, 2, 9 ).squaredMagnitude() == 90.0f );
+	EXPECT( Vec2( 1, 1 ).squaredLength() == 2 );
+	EXPECT( Vec3( 2, 1, 2 ).squaredLength() == 9 );
+	EXPECT( Vec4( 2, 1, 2, 9 ).squaredLength() == 90.0f );
 },
 
 CASE( "Verify normalized" )
@@ -141,12 +141,30 @@ CASE( "Verify normalized" )
 	EXPECT( Vec4( 2, 2, 2, 2 ).normalized() == Vec4( 0.5f, 0.5f, 0.5f, 0.5f ) );
 },
 
-/*CASE( "Verify Normalize" )
-{
-	EXPECT( Vec2( 1, 1 ).squaredMagnitude() == 2 );
-	EXPECT( Vec3( 2, 1, 2 ).squaredMagnitude() == 9 );
-	EXPECT( Vec4( 2, 1, 2, 9 ).squaredMagnitude() == 90.0f );
-},*/
+	CASE( "Verify normalized" )
+	{
+		EXPECT( Vec2( 1, 0 ).Normalize() == Vec2( 1, 0 ) );
+		EXPECT( Vec2( 3, 2 ).Normalize() == Vec2( 0.83205029433f, 0.55470019622f ) );
+		EXPECT( Vec3( 0, 1, 0 ).Normalize() == Vec3( 0, 1, 0 ) );
+		EXPECT( Vec3( 0, 2, 0 ).Normalize() == Vec3( 0, 1, 0 ) );
+		EXPECT( Vec4( 2, 2, 2, 2 ).Normalize() == Vec4( 0.5f, 0.5f, 0.5f, 0.5f ) );
+	},
+};
+
+const lest::test VectorStaticFunctionTests[] = {
+
+	CASE( "Verify Dot" ) {
+		EXPECT( Vec2::Dot( Vec2( 5, 4 ), Vec2( 4, 3 ) ) == 32 );
+		EXPECT( Vec3::Dot( Vec3( 8, 10, 100 ), Vec3( 4, 3, 2 ) ) == 262 );
+		EXPECT( Vec4::Dot( Vec4( 4, 1, 3, -100 ), Vec4( 2, 0, 3, 2 ) ) == -183 );
+	},
+
+	CASE( "Verify Scale" ) {
+		EXPECT( Vec2::Scale( Vec2(2, 0), Vec2( 2, 0 )) == Vec2( 4, 0 ) );
+		EXPECT( Vec3::Scale( Vec3( 2, 0, 100 ), Vec3( 2, 0, 3 ) ) == Vec3( 4, 0, 300 ) );
+		EXPECT( Vec4::Scale( Vec4( 2, 0, 100, -100 ), Vec4( 2, 0, 3, -1 ) ) == Vec4( 4, 0, 300, 100 ) );
+	},
+
 };
 
 const lest::test MathFunctionsTests[] = {
@@ -194,5 +212,6 @@ CASE( "sqrt" ) {
 void RunTests() {
 	char * args[] = { "*" };
 	lest::run( VectorTests, 1, args );
+	lest::run( VectorStaticFunctionTests, 1, args );
 	lest::run( MathFunctionsTests, 1, args );
 }

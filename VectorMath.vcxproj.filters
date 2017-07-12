@@ -138,9 +138,6 @@
     <ClCompile Include="src\RLMath\Vectors.cpp">
       <Filter>Source Files\RLMath</Filter>
     </ClCompile>
-    <ClCompile Include="src\RLMath\Geometry.cpp">
-      <Filter>Source Files\RLMath</Filter>
-    </ClCompile>
     <ClCompile Include="src\CSceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
