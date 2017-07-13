@@ -77,3 +77,17 @@ inline Vec3 RL_cos( const Vec3 vec ) {
 inline Vec4 RL_cos( const Vec4 vec ) {
 	return Vec4( RL_cos( vec.x ), RL_cos( vec.y ), RL_cos( vec.z ), RL_cos( vec.w ) );
 }
+
+//=================
+// min
+//=================
+inline float RL_min( const float a, const float b ) {
+	return fminf( a, b );
+}
+
+//=================
+// max
+//=================
+inline float RL_max( const float a, const float b ) {
+	return fmaxf( a, b );
+}

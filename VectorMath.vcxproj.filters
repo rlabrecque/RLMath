@@ -313,6 +313,9 @@
     <ClInclude Include="src\ThirdParty\SDL2\include\SDL_clipboard.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scenes\CHomingMissile.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -353,6 +356,9 @@
     </ClCompile>
     <ClCompile Include="src\CSceneManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\CHomingMissile.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

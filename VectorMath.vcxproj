@@ -163,6 +163,7 @@
     <ClInclude Include="src\CSceneManager.h" />
     <ClInclude Include="src\Scenes\CGeometryPlayground.h" />
     <ClInclude Include="src\Scenes\CSierpinskiTriangle.h" />
+    <ClInclude Include="src\Scenes\CHomingMissile.h" />
     <ClInclude Include="src\Tests.h" />
     <ClInclude Include="src\ThirdParty\GL\gl3w.h" />
     <ClInclude Include="src\ThirdParty\GL\glcorearb.h" />
@@ -253,6 +254,7 @@
     <ClCompile Include="src\CSceneManager.cpp" />
     <ClCompile Include="src\Scenes\CGeometryPlayground.cpp" />
     <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp" />
+    <ClCompile Include="src\Scenes\CHomingMissile.cpp" />
     <ClCompile Include="src\Tests.cpp" />
     <ClCompile Include="src\ThirdParty\GL\gl3w.c" />
     <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp" />

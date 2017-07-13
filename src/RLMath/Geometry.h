@@ -1,5 +1,9 @@
 #pragma once
 
+struct Ray;
+struct AABB;
+struct Circle;
+
 //=====================================================================================================================
 // Geometry
 //=====================================================================================================================
@@ -22,7 +26,9 @@ struct Ray {
 	inline const char* ToString() const;
 	
 	// Distance and Collision detection
-	inline Vec2 Ray::GetClosestPoint( Vec2 point ) const;
+	inline Vec2 GetClosestPoint( const Vec2 point ) const;
+	inline bool Intesects( const Ray aabb ) const;
+	inline bool Intesects( const AABB aabb ) const;
 
 	// Static functions
 };
@@ -52,12 +58,12 @@ struct AABB {
 	// Distance and Collision detection
 	//inline float DistanceTo( Vec2 point ) const;
 	//inline float DistanceTo( AABB other ) const;
-	inline Vec2 GetClosestPoint( Vec2 point ) const;
-	inline bool ContainsPoint( Vec2 point ) const;
-	inline bool Intersects( AABB other ) const;
+	inline Vec2 GetClosestPoint( const Vec2 point ) const;
+	inline bool ContainsPoint( const Vec2 point ) const;
+	inline bool Intersects( const AABB other ) const;
 
 	// Static functions
-	inline static AABB FromMinsMaxs( Vec2 mins, Vec2 maxs );
+	inline static AABB FromMinsMaxs( const Vec2 mins, const Vec2 maxs );
 };
 
 //=====================================================================================================================
@@ -81,9 +87,9 @@ struct Circle {
 	//inline float DistanceTo( Vec2 point ) const;
 	//inline float DistanceTo( Circle other ) const;
 	inline Vec2 GetClosestPoint( Vec2 point ) const;
-	inline Vec2 GetClosestPoint( Circle other ) const;
-	inline bool ContainsPoint( Vec2 point ) const;
-	inline bool Intersects( Circle other ) const;
+	inline Vec2 GetClosestPoint( const Circle other ) const;
+	inline bool ContainsPoint( const Vec2 point ) const;
+	inline bool Intersects( const Circle other ) const;
 
 	// Static functions
 };

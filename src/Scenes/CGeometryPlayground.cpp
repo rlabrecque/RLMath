@@ -190,7 +190,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer ) const {
 
 	for ( auto&& aabb : m_AABBsDict ) {
 		if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Collision && aabb.first.ContainsPoint( point ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( aabb.second.first );
@@ -204,7 +204,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer ) const {
 
 	for ( auto&& circle : m_CirclesDict ) {
 		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && circle.first.ContainsPoint( point ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( circle.second.first );
@@ -230,12 +230,22 @@ void CGeometryPlayground::RenderInsertRay( CRenderer& renderer ) const {
 	}
 
 	for ( auto&& ray2 : m_RaysDict ) {
-		renderer.SetDrawColor( ray2.second.first );
+		if ( (m_TestGeometry & k_EGeometry_Ray) && m_TestMode == k_EGeometryTestMode_Collision && ray.Intesects( ray2.first ) ) {
+			renderer.SetDrawColor( 1, 0, 0 );
+		}
+		else {
+			renderer.SetDrawColor( ray2.second.first );
+		}
 		renderer.DrawRay( ray2.first );
 	}
 
 	for ( auto&& aabb : m_AABBsDict ) {
-		renderer.SetDrawColor( aabb.second.first );
+		if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Collision && ray.Intesects( aabb.first ) ) {
+			renderer.SetDrawColor( 1, 0, 0 );
+		}
+		else {
+			renderer.SetDrawColor( aabb.second.first );
+		}
 		renderer.DrawAABB( aabb.first );
 	}
 
@@ -261,7 +271,7 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer ) const {
 
 	for ( auto&& point : m_PointsDict ) {
 		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.ContainsPoint( point.first ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( point.second.first );
@@ -270,18 +280,27 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer ) const {
 	}
 
 	for ( auto&& ray : m_RaysDict ) {
-		renderer.SetDrawColor( ray.second.first );
+		if ( (m_TestGeometry & k_EGeometry_Ray) && m_TestMode == k_EGeometryTestMode_Collision && ray.first.Intesects( aabb ) ) {
+			renderer.SetDrawColor( 1, 0, 0 );
+		}
+		else {
+			renderer.SetDrawColor( ray.second.first );
+		}
 		renderer.DrawRay( ray.first );
 	}
 
 	for ( auto&& aabb2 : m_AABBsDict ) {
-		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && aabb.Intersects( aabb2.first ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+		if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Collision && aabb.Intersects( aabb2.first ) ) {
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( aabb2.second.first );
 		}
 		renderer.DrawAABB( aabb2.first );
+
+		/*if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
+			renderer.DrawLine( circle2.first.GetClosestPoint( circle ), circle.GetClosestPoint( circle2.first ) );
+		}*/
 	}
 
 	for ( auto&& circle : m_CirclesDict ) {
@@ -298,7 +317,7 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer ) const {
 
 	for ( auto&& point : m_PointsDict ) {
 		if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Collision && circle.ContainsPoint( point.first ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( point.second.first );
@@ -322,7 +341,7 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer ) const {
 
 	for ( auto&& circle2 : m_CirclesDict ) {
 		if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && circle.Intersects( circle2.first ) ) {
-			renderer.SetDrawColor( Vec4( 1, 0, 0, 1 ) );
+			renderer.SetDrawColor( 1, 0, 0 );
 		}
 		else {
 			renderer.SetDrawColor( circle2.second.first );

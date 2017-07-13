@@ -2,11 +2,13 @@
 
 #include "CSierpinskiTriangle.h"
 #include "CGeometryPlayground.h"
+#include "CHomingMissile.h"
 
 bool CSceneManager::Init() {
 	m_Scenes = {
 		new CGeometryPlayground,
 		new CSierpinskiTriangle,
+		new CHomingMissile,
 	};
 
 	for ( auto&& scene : m_Scenes ) {
@@ -24,7 +26,7 @@ void CSceneManager::Shutdown() {
 	}
 }
 
-std::array<CBaseScene*, 2> CSceneManager::GetScenes() const {
+std::array<CBaseScene*, NUMSCENES> CSceneManager::GetScenes() const {
 	return m_Scenes;
 }
 

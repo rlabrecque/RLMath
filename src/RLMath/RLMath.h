@@ -67,6 +67,17 @@ inline Vec2 RL_cos( const Vec2 vec );
 inline Vec3 RL_cos( const Vec3 vec );
 inline Vec4 RL_cos( const Vec4 vec );
 
+//=================
+// min
+//=================
+inline float RL_min( const float a, const float b );
+
+//=================
+// max
+//=================
+inline float RL_max( const float a, const float b );
+
+
 #include "Vectors.h"
 #include "Matrix.h"
 #include "Geometry.h"

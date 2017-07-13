@@ -149,6 +149,14 @@ void CRenderer::SetDrawColor( Vec4 color ) {
 	s_DrawColor = color;
 }
 
+void CRenderer::SetDrawColor( Vec3 color ) {
+	SetDrawColor( Vec4( color ) );
+}
+
+void CRenderer::SetDrawColor( unsigned char r, unsigned char g, unsigned char b ) {
+	SetDrawColor( Vec4( r, g, b, 1 ) );
+}
+
 void CRenderer::DrawPoint( Vec2 point ) {
 	SDL_assert( bInDrawing );
 

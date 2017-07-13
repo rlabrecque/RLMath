@@ -22,7 +22,7 @@ inline const char* Ray::ToString() const {
 }
 
 // Collision and Distance detection
-inline Vec2 Ray::GetClosestPoint( Vec2 point ) const {
+inline Vec2 Ray::GetClosestPoint( const Vec2 point ) const {
 	Vec2 diff = point - position;
 
 	float paramater = Vec2::Dot( direction, diff );
@@ -32,6 +32,32 @@ inline Vec2 Ray::GetClosestPoint( Vec2 point ) const {
 	else {
 		return position;
 	}
+}
+
+inline bool Ray::Intesects( const Ray ray ) const {
+	return false;
+}
+
+inline bool Ray::Intesects( const AABB aabb ) const {
+	// Slab method taken from:
+	// https://tavianator.com/fast-branchless-raybounding-box-intersections/
+
+	Vec2 mins = aabb.mins();
+	Vec2 maxs = aabb.maxs();
+
+	float t1 = (mins.x - position.x) / direction.x;
+	float t2 = (maxs.x - position.x) / direction.x;
+
+	float tmin = RL_min( t1, t2 );
+	float tmax = RL_max( t1, t2 );
+
+	t1 = (mins.y - position.y) / direction.y;
+	t2 = (maxs.y - position.y) / direction.y;
+
+	tmin = RL_max( tmin, RL_min( RL_min(t1, t2), tmax ) );
+	tmax = RL_min( tmax, RL_max(RL_max( t1, t2 ), tmin) );
+
+	return tmax > RL_max(tmin, 0.0f);
 }
 
 // Static functions
@@ -69,30 +95,49 @@ inline Vec2 AABB::size() const {
 	return extents * 2;
 }
 
-inline AABB& AABB::SetMinsMaxs( Vec2 mins, Vec2 maxs ) {
+inline AABB& AABB::SetMinsMaxs( const Vec2 mins, const Vec2 maxs ) {
 	center = (mins + maxs) * 0.5f;
 	extents = (mins - maxs) * 0.5f;
 	return *this;
 }
 
 // Collision and Distance detection
-inline Vec2 AABB::GetClosestPoint( Vec2 point ) const {
-	Vec2 direction = (point - center).Normalize();
-	return Vec2( center + Vec2::Scale(direction, extents) );
+inline Vec2 AABB::GetClosestPoint( const Vec2 point ) const {
+	float s, d = 0;
+
+	if ( point.x < mins().x ) {
+		s = point.x - mins().x;
+		d += s*s;
+	}
+	else if (point.x > maxs().x) {
+		s = point.x + maxs().x;
+		d += s*s;
+	}
+
+	if ( point.y < mins().y ) {
+		s = point.y - mins().y;
+		d += s*s;
+	}
+	else if ( point.y > maxs().y ) {
+		s = point.y + maxs().y;
+		d += s*s;
+	}
+
+	return Vec2(center.x + d, center.y + d);
 }
 
-inline bool AABB::ContainsPoint( Vec2 point ) const {
+inline bool AABB::ContainsPoint( const Vec2 point ) const {
 	Vec2 distance = RL_abs(center - point);
 	return distance.x <= extents.x && distance.y <= extents.y;
 }
 
-inline bool AABB::Intersects( AABB other ) const {
+inline bool AABB::Intersects( const AABB other ) const {
 	Vec2 distance = RL_abs( center - other.center );
 	return distance.x <= (extents.x + other.extents.x) && distance.y <= ( extents.y + other.extents.y );
 }
 
 // Static functions
-inline AABB AABB::FromMinsMaxs( Vec2 mins, Vec2 maxs ) {
+inline AABB AABB::FromMinsMaxs( const Vec2 mins, const Vec2 maxs ) {
 	return AABB( (mins + maxs) * 0.5f, (mins - maxs) * 0.5f );
 }
 
@@ -118,22 +163,22 @@ inline const char* Circle::ToString() const {
 }
 
 // Collision and distance detection
-inline Vec2 Circle::GetClosestPoint( Vec2 point ) const {
+inline Vec2 Circle::GetClosestPoint( const Vec2 point ) const {
 	Vec2 direction = (point - center).Normalize();
 	return Vec2( center + direction * radius );
 }
 
-inline Vec2 Circle::GetClosestPoint( Circle other ) const {
+inline Vec2 Circle::GetClosestPoint( const Circle other ) const {
 	Vec2 direction = (other.center - center).Normalize();
 	return Vec2( center + direction * radius );
 }
 
 
-inline bool Circle::ContainsPoint( Vec2 point ) const {
+inline bool Circle::ContainsPoint( const Vec2 point ) const {
 	return (point - center).length() <= radius;
 }
 
-inline bool Circle::Intersects( Circle other ) const {
+inline bool Circle::Intersects( const Circle other ) const {
 	return (center - other.center).length() <= (radius + other.radius);
 }
 
