@@ -1,7 +1,7 @@
 #pragma once
 #include "main.h"
 
-#include <unordered_map>
+#include <vector>
 
 class CGeometryPlayground : public CBaseScene {
 public:
@@ -14,10 +14,10 @@ public:
 	virtual void OnRender( CRenderer& renderer ) const override;
 
 private:
-	void RenderInsertPoint( CRenderer& renderer ) const;
-	void RenderInsertRay( CRenderer& renderer ) const;
-	void RenderInsertAABB( CRenderer& renderer ) const;
-	void RenderInsertCircle( CRenderer& renderer ) const;
+	void RenderInsertPoint( CRenderer& renderer, const Vec2 point ) const;
+	void RenderInsertRay( CRenderer& renderer, const Ray ray ) const;
+	void RenderInsertAABB( CRenderer& renderer, const AABB aabb ) const;
+	void RenderInsertCircle( CRenderer& renderer, const Circle circle ) const;
 	void ClearGeometry();
 
 	enum EGeometry : unsigned int {
@@ -33,12 +33,23 @@ private:
 		k_EGeometryTestMode_Distance,
 	};
 
+	struct GeometryEntity {
+		EGeometry type;
+		Vec4 color;
+
+		union {
+			Vec2 point;
+			Ray ray;
+			AABB aabb;
+			Circle circle;
+		};
+
+		inline GeometryEntity() {}
+	};
+
 	Vec4 m_DrawColor = Vec4( 1.0f, 1.0f, 1.0f, 1.0f );
 
-	std::unordered_map<Vec2, std::pair<Vec4, bool>> m_PointsDict;
-	std::unordered_map<Ray, std::pair<Vec4, bool>> m_RaysDict;
-	std::unordered_map<AABB, std::pair<Vec4, bool>> m_AABBsDict;
-	std::unordered_map<Circle, std::pair<Vec4, bool>> m_CirclesDict;
+	std::vector<GeometryEntity> m_GeometryEntities;
 
 	EGeometry m_InsertMode = k_EGeometry_Point;
 	EGeometry m_TestGeometry = (EGeometry)~k_EGeometry_None;

@@ -23,41 +23,19 @@ inline const char* Ray::ToString() const {
 
 // Collision and Distance detection
 inline Vec2 Ray::GetClosestPoint( const Vec2 point ) const {
-	Vec2 diff = point - position;
+	// Project point onto ray
+	float t = Vec2::Dot( point - position, direction );
 
-	float paramater = Vec2::Dot( direction, diff );
-	if ( paramater > 0 ) {
-		return position + (direction * paramater);
-	}
-	else {
-		return position;
-	}
-}
+	// We only want to clamp t in the positive direction.
+	// The ray extends infinatley in this direction!
+	t = RL_max( t, 0.0f );
 
-inline bool Ray::Intesects( const Ray ray ) const {
-	return false;
-}
-
-inline bool Ray::Intesects( const AABB aabb ) const {
-	// Slab method taken from:
-	// https://tavianator.com/fast-branchless-raybounding-box-intersections/
-
-	Vec2 mins = aabb.mins();
-	Vec2 maxs = aabb.maxs();
-
-	float t1 = (mins.x - position.x) / direction.x;
-	float t2 = (maxs.x - position.x) / direction.x;
-
-	float tmin = RL_min( t1, t2 );
-	float tmax = RL_max( t1, t2 );
-
-	t1 = (mins.y - position.y) / direction.y;
-	t2 = (maxs.y - position.y) / direction.y;
-
-	tmin = RL_max( tmin, RL_min( RL_min(t1, t2), tmax ) );
-	tmax = RL_min( tmax, RL_max(RL_max( t1, t2 ), tmin) );
-
-	return tmax > RL_max(tmin, 0.0f);
+	// Compute the projected position from the clamped t
+	// Notice we multiply r.Normal by t, not AB.
+	// This is becuase we want the ray in the direction 
+	// of the normal, which technically the line segment is
+	// but this is much more explicit and easy to read.
+	return Vec2(position + (direction * t));
 }
 
 // Static functions
@@ -126,16 +104,6 @@ inline Vec2 AABB::GetClosestPoint( const Vec2 point ) const {
 	return Vec2(center.x + d, center.y + d);
 }
 
-inline bool AABB::ContainsPoint( const Vec2 point ) const {
-	Vec2 distance = RL_abs(center - point);
-	return distance.x <= extents.x && distance.y <= extents.y;
-}
-
-inline bool AABB::Intersects( const AABB other ) const {
-	Vec2 distance = RL_abs( center - other.center );
-	return distance.x <= (extents.x + other.extents.x) && distance.y <= ( extents.y + other.extents.y );
-}
-
 // Static functions
 inline AABB AABB::FromMinsMaxs( const Vec2 mins, const Vec2 maxs ) {
 	return AABB( (mins + maxs) * 0.5f, (mins - maxs) * 0.5f );
@@ -146,40 +114,31 @@ inline AABB AABB::FromMinsMaxs( const Vec2 mins, const Vec2 maxs ) {
 //=====================================================================================================================
 
 // Constructors
-constexpr Circle::Circle() : center( Vec2() ), radius( 0 ) {}
-constexpr Circle::Circle( Vec2 _center, float _radius ) : center( _center ), radius( RL_abs( _radius ) ) {}
+constexpr Circle::Circle() : origin( Vec2() ), radius( 0 ) {}
+constexpr Circle::Circle( Vec2 _center, float _radius ) : origin( _center ), radius( RL_abs( _radius ) ) {}
 
 // Overrides
 inline bool Circle::operator==( const Circle& other ) const {
-	return (center == other.center && radius == other.radius);
+	return (origin == other.origin && radius == other.radius);
 }
 
 // Custom
 inline const char* Circle::ToString() const {
 	static char str[47 * (sizeof( Circle ) / sizeof( float )) + 6];
-	snprintf( str, sizeof( str ), "(%f, %f) %f", center.x, center.y, radius );
+	snprintf( str, sizeof( str ), "(%f, %f) %f", origin.x, origin.y, radius );
 
 	return str;
 }
 
 // Collision and distance detection
 inline Vec2 Circle::GetClosestPoint( const Vec2 point ) const {
-	Vec2 direction = (point - center).Normalize();
-	return Vec2( center + direction * radius );
+	Vec2 direction = (point - origin).Normalize();
+	return Vec2( origin + direction * radius );
 }
 
 inline Vec2 Circle::GetClosestPoint( const Circle other ) const {
-	Vec2 direction = (other.center - center).Normalize();
-	return Vec2( center + direction * radius );
-}
-
-
-inline bool Circle::ContainsPoint( const Vec2 point ) const {
-	return (point - center).length() <= radius;
-}
-
-inline bool Circle::Intersects( const Circle other ) const {
-	return (center - other.center).length() <= (radius + other.radius);
+	Vec2 direction = (other.origin - origin).Normalize();
+	return Vec2( origin + direction * radius );
 }
 
 // Static functions

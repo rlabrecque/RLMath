@@ -77,7 +77,6 @@ inline float RL_min( const float a, const float b );
 //=================
 inline float RL_max( const float a, const float b );
 
-
 #include "Vectors.h"
 #include "Matrix.h"
 #include "Geometry.h"
@@ -113,7 +112,7 @@ namespace std {
 
 	template<> struct hash<Circle> {
 		size_t operator()( Circle const& aabb ) const {
-			const size_t h1( std::hash<Vec2>{}(aabb.center) );
+			const size_t h1( std::hash<Vec2>{}(aabb.origin) );
 			const size_t h2( std::hash<float>{}(aabb.radius) );
 			return h1 ^ (h2 << 1);
 		}

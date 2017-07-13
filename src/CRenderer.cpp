@@ -240,14 +240,14 @@ void CRenderer::DrawAABB( AABB aabb ) {
 void CRenderer::DrawCircle( Circle circle ) {
 	float r2 = circle.radius * circle.radius;
 	for ( float cx = circle.radius, sy = 0; sy < cx; ++sy) {
-		DrawPoint( Vec2( circle.center.x + cx, circle.center.y + sy ) );
-		DrawPoint( Vec2( circle.center.x + cx, circle.center.y - sy ) );
-		DrawPoint( Vec2( circle.center.x - cx, circle.center.y + sy ) );
-		DrawPoint( Vec2( circle.center.x - cx, circle.center.y - sy ) );
-		DrawPoint( Vec2( circle.center.x + sy, circle.center.y + cx ) );
-		DrawPoint( Vec2( circle.center.x + sy, circle.center.y - cx ) );
-		DrawPoint( Vec2( circle.center.x - sy, circle.center.y + cx ) );
-		DrawPoint( Vec2( circle.center.x - sy, circle.center.y - cx ) );
+		DrawPoint( Vec2( circle.origin.x + cx, circle.origin.y + sy ) );
+		DrawPoint( Vec2( circle.origin.x + cx, circle.origin.y - sy ) );
+		DrawPoint( Vec2( circle.origin.x - cx, circle.origin.y + sy ) );
+		DrawPoint( Vec2( circle.origin.x - cx, circle.origin.y - sy ) );
+		DrawPoint( Vec2( circle.origin.x + sy, circle.origin.y + cx ) );
+		DrawPoint( Vec2( circle.origin.x + sy, circle.origin.y - cx ) );
+		DrawPoint( Vec2( circle.origin.x - sy, circle.origin.y + cx ) );
+		DrawPoint( Vec2( circle.origin.x - sy, circle.origin.y - cx ) );
 
 		if ( RL_abs( (cx * cx) + (sy * sy) - r2 ) > RL_abs( cx * cx + (sy - 1) * (sy - 1) - r2) ) {
 			--cx;
