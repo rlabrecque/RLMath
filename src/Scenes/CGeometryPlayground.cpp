@@ -31,7 +31,6 @@ void CGeometryPlayground::OnUpdate() {
 	}
 
 	if ( g_MouseButtonUpThisFrame[0] ) {
-		printf( "%s\n", m_StartPos.ToString() );
 		GeometryEntity entity;
 		entity.type = m_InsertMode;
 		entity.color = m_DrawColor;
@@ -164,6 +163,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer, const Vec2 poi
 
 			if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( point, entity.point );
+				printf( "Distance: %f\n", DistanceBetween( point, entity.point ) );
 			}
 			break;
 		case k_EGeometry_Ray:
@@ -192,6 +192,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer, const Vec2 poi
 
 			if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( point, entity.aabb.GetClosestPoint( point ) );
+				printf( "Distance: %f\n", DistanceBetween( point, entity.aabb ) );
 			}
 			break;
 		case k_EGeometry_Circle:
@@ -274,7 +275,12 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer, const AABB aabb
 				renderer.SetDrawColor( entity.color );
 			}
 
-			renderer.DrawPoint( entity.point);
+			renderer.DrawPoint( entity.point );
+
+			if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
+				renderer.DrawLine( entity.point, aabb.GetClosestPoint( entity.point ) );
+				printf( "Distance: %f\n", DistanceBetween( aabb, entity.point ) );
+			}
 			break;
 		case k_EGeometry_Ray:
 			if ( (m_TestGeometry & k_EGeometry_Ray) && m_TestMode == k_EGeometryTestMode_Collision && RayIntersectsAABB( entity.ray, aabb ) ) {
@@ -295,9 +301,20 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer, const AABB aabb
 			}
 
 			renderer.DrawAABB( entity.aabb );
+
+			if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
+				renderer.DrawLine( entity.aabb.origin, aabb.GetClosestPoint( entity.aabb ) );
+				printf( "Distance: %f\n", DistanceBetween( aabb, entity.aabb ) );
+			}
 			break;
 		case k_EGeometry_Circle:
-			renderer.SetDrawColor( entity.color );
+			if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && AABBIntersectsCircle( aabb, entity.circle ) ) {
+				renderer.SetDrawColor( 1, 0, 0 );
+			}
+			else {
+				renderer.SetDrawColor( entity.color );
+			}
+
 			renderer.DrawCircle( entity.circle );
 			break;
 		}
@@ -317,6 +334,7 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer, const Circle 
 			else {
 				renderer.SetDrawColor( entity.color );
 			}
+
 			renderer.DrawPoint( entity.point );
 
 			if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
@@ -328,8 +346,18 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer, const Circle 
 			renderer.DrawRay( entity.ray );
 			break;
 		case k_EGeometry_AABB:
-			renderer.SetDrawColor( entity.color );
+			if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Collision && AABBIntersectsCircle( entity.aabb, circle ) ) {
+				renderer.SetDrawColor( 1, 0, 0 );
+			}
+			else {
+				renderer.SetDrawColor( entity.color );
+			}
+
 			renderer.DrawAABB( entity.aabb );
+
+			/*if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
+				renderer.DrawLine( entity.aabb.GetClosestPoint( circle ), circle.GetClosestPoint( aabb ) );
+			}*/
 			break;
 		case k_EGeometry_Circle:
 			if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Collision && CircleIntersectsCircle( circle, entity.circle ) ) {
@@ -338,6 +366,7 @@ void CGeometryPlayground::RenderInsertCircle( CRenderer& renderer, const Circle 
 			else {
 				renderer.SetDrawColor( entity.color );
 			}
+
 			renderer.DrawCircle( entity.circle );
 
 			if ( (m_TestGeometry & k_EGeometry_Circle) && m_TestMode == k_EGeometryTestMode_Distance ) {

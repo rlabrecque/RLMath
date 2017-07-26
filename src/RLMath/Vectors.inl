@@ -79,7 +79,7 @@ inline float Vec2::length() const {
 	return RL_sqrt( Dot( *this, *this ) );
 }
 
-inline float Vec2::squaredLength() const {
+inline float Vec2::lengthSq() const {
 	return Dot( *this, *this );
 }
 
@@ -192,7 +192,7 @@ inline float Vec3::length() const {
 	return RL_sqrt( Dot( *this, *this ) );
 }
 
-inline float Vec3::squaredLength() const {
+inline float Vec3::lengthSq() const {
 	return Dot(*this, *this);
 }
 
@@ -309,7 +309,7 @@ inline float Vec4::length() const {
 	return RL_sqrt( Dot(*this, *this) );
 }
 
-inline float Vec4::squaredLength() const {
+inline float Vec4::lengthSq() const {
 	return Dot( *this, *this );
 }
 

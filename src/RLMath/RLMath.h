@@ -97,14 +97,14 @@ namespace std {
 	template<> struct hash<Ray> {
 		size_t operator()( Ray const& ray ) const {
 			const size_t h1( std::hash<Vec2>{}(ray.direction) );
-			const size_t h2( std::hash<Vec2>{}(ray.position) );
+			const size_t h2( std::hash<Vec2>{}(ray.origin) );
 			return h1 ^ (h2 << 1);
 		}
 	};
 
 	template<> struct hash<AABB> {
 		size_t operator()( AABB const& aabb ) const {
-			const size_t h1( std::hash<Vec2>{}(aabb.center) );
+			const size_t h1( std::hash<Vec2>{}(aabb.origin) );
 			const size_t h2( std::hash<Vec2>{}(aabb.extents) );
 			return h1 ^ (h2 << 1);
 		}

@@ -41,7 +41,7 @@ void CHomingMissile::OnInterface() {
 		missile.pos = Vec2( static_cast<float>(rand() % WindowWidth), static_cast<float>(rand() % WindowHeight) );
 		missile.dir = (g_MousePosition - missile.pos).Normalize();
 		missile.radius = static_cast<float>(10 + (rand() % 20));
-		m_Missiles.emplace_back( missile );
+		m_Missiles.push_back( missile );
 	}
 
 	ImGui::SliderFloat( "Speed", &m_MissileSpeed, 0, 5 );

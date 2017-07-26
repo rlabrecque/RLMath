@@ -45,7 +45,7 @@ struct Vec2 {
 	// Custom
 	inline const char* ToString() const;
 	inline float length() const;
-	inline float squaredLength() const;
+	inline float lengthSq() const;
 	inline Vec2 normalized() const;
 	inline Vec2& Normalize();
 
@@ -100,7 +100,7 @@ struct Vec3 {
 	// Custom
 	inline const char* ToString() const;
 	inline float length() const;
-	inline float squaredLength() const;
+	inline float lengthSq() const;
 	inline Vec3 normalized() const;
 	inline Vec3& Normalize();
 
@@ -149,7 +149,7 @@ struct Vec4 {
 	// Custom
 	inline const char* ToString() const;
 	inline float length() const;
-	inline float squaredLength() const;
+	inline float lengthSq() const;
 	inline Vec4 normalized() const;
 	inline Vec4& Normalize();
 

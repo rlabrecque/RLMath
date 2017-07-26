@@ -5,18 +5,18 @@
 //=====================================================================================================================
 
 // Constructors
-constexpr Ray::Ray() : position(Vec2()), direction(Vec2()) {}
-inline Ray::Ray( Vec2 _position, Vec2 _direction ) : position( _position ), direction(_direction.Normalize()) {}
+constexpr Ray::Ray() : origin(Vec2()), direction(Vec2()) {}
+inline Ray::Ray( Vec2 _position, Vec2 _direction ) : origin( _position ), direction(_direction.Normalize()) {}
 
 // Overrides
 inline bool Ray::operator==( const Ray& other ) const {
-	return (position == other.position && direction == other.direction);
+	return (origin == other.origin && direction == other.direction);
 }
 
 // Custom
 inline const char* Ray::ToString() const {
 	static char str[47 * (sizeof( Ray ) / sizeof( float )) + 10];
-	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", position.x, position.y, direction.x, direction.y );
+	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", origin.x, origin.y, direction.x, direction.y );
 
 	return str;
 }
@@ -24,7 +24,7 @@ inline const char* Ray::ToString() const {
 // Collision and Distance detection
 inline Vec2 Ray::GetClosestPoint( const Vec2 point ) const {
 	// Project point onto ray
-	float t = Vec2::Dot( point - position, direction );
+	float t = Vec2::Dot( point - origin, direction );
 
 	// We only want to clamp t in the positive direction.
 	// The ray extends infinatley in this direction!
@@ -35,7 +35,7 @@ inline Vec2 Ray::GetClosestPoint( const Vec2 point ) const {
 	// This is becuase we want the ray in the direction 
 	// of the normal, which technically the line segment is
 	// but this is much more explicit and easy to read.
-	return Vec2(position + (direction * t));
+	return Vec2(origin + (direction * t));
 }
 
 // Static functions
@@ -45,28 +45,28 @@ inline Vec2 Ray::GetClosestPoint( const Vec2 point ) const {
 //=====================================================================================================================
 
 // Constructors
-constexpr AABB::AABB() : center( Vec2() ), extents( Vec2() ) {}
-constexpr AABB::AABB( Vec2 _center, Vec2 _extents ) : center( _center ), extents( RL_abs( _extents ) ) {}
+constexpr AABB::AABB() : origin( Vec2() ), extents( Vec2() ) {}
+constexpr AABB::AABB( Vec2 _center, Vec2 _extents ) : origin( _center ), extents( RL_abs( _extents ) ) {}
 
 // Overrides
 bool AABB::operator==( const AABB& other ) const {
-	return (center == other.center && extents == other.extents);
+	return (origin == other.origin && extents == other.extents);
 }
 
 // Custom
 inline const char* AABB::ToString() const {
 	static char str[47 * (sizeof( AABB ) / sizeof( float )) + 10];
-	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", center.x, center.y, extents.x, extents.y );
+	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", origin.x, origin.y, extents.x, extents.y );
 
 	return str;
 }
 
 inline Vec2 AABB::mins() const {
-	return center - extents;
+	return origin - extents;
 }
 
 inline Vec2 AABB::maxs() const {
-	return center + extents;
+	return origin + extents;
 }
 
 inline Vec2 AABB::size() const {
@@ -74,34 +74,44 @@ inline Vec2 AABB::size() const {
 }
 
 inline AABB& AABB::SetMinsMaxs( const Vec2 mins, const Vec2 maxs ) {
-	center = (mins + maxs) * 0.5f;
+	origin = (mins + maxs) * 0.5f;
 	extents = (mins - maxs) * 0.5f;
 	return *this;
 }
 
 // Collision and Distance detection
 inline Vec2 AABB::GetClosestPoint( const Vec2 point ) const {
-	float s, d = 0;
+	Vec2 closestPoint = point;
 
-	if ( point.x < mins().x ) {
-		s = point.x - mins().x;
-		d += s*s;
-	}
-	else if (point.x > maxs().x) {
-		s = point.x + maxs().x;
-		d += s*s;
-	}
+	Vec2 min = mins();
+	Vec2 max = maxs();
 
-	if ( point.y < mins().y ) {
-		s = point.y - mins().y;
-		d += s*s;
+	if ( closestPoint.x < min.x ) {
+		closestPoint.x = min.x;
 	}
-	else if ( point.y > maxs().y ) {
-		s = point.y + maxs().y;
-		d += s*s;
+	else if ( closestPoint.x > max.x ) {
+		closestPoint.x = max.x;
 	}
 
-	return Vec2(center.x + d, center.y + d);
+	if ( closestPoint.y < min.y ) {
+		closestPoint.y = min.y;
+	}
+	else if ( closestPoint.y > max.y ) {
+		closestPoint.y = max.y;
+	}
+
+	return closestPoint;
+}
+
+inline Vec2 AABB::GetClosestPoint( const AABB aabb ) const {
+	Vec2 aMins = mins();
+	Vec2 aMaxs = maxs();
+	Vec2 bMins = aabb.mins();
+	Vec2 bMaxs = aabb.maxs();
+
+	Vec2 direction;
+
+	return origin + Vec2::Scale( direction, extents );
 }
 
 // Static functions

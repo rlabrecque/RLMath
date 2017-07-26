@@ -127,9 +127,9 @@ CASE( "Verify length" )
 
 CASE( "Verify squaredLength" )
 {
-	EXPECT( Vec2( 1, 1 ).squaredLength() == 2 );
-	EXPECT( Vec3( 2, 1, 2 ).squaredLength() == 9 );
-	EXPECT( Vec4( 2, 1, 2, 9 ).squaredLength() == 90.0f );
+	EXPECT( Vec2( 1, 1 ).lengthSq() == 2 );
+	EXPECT( Vec3( 2, 1, 2 ).lengthSq() == 9 );
+	EXPECT( Vec4( 2, 1, 2, 9 ).lengthSq() == 90.0f );
 },
 
 CASE( "Verify normalized" )
