@@ -250,6 +250,7 @@
     <ClCompile Include="src\CUserInterface.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\CRenderer.cpp" />
+    <ClCompile Include="src\RLMath\Matrix.cpp" />
     <ClCompile Include="src\RLMath\Vectors.cpp" />
     <ClCompile Include="src\CSceneManager.cpp" />
     <ClCompile Include="src\Scenes\CGeometryPlayground.cpp" />

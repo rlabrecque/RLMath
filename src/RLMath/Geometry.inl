@@ -15,7 +15,7 @@ inline bool Ray::operator==( const Ray& other ) const {
 
 // Custom
 inline const char* Ray::ToString() const {
-	static char str[47 * (sizeof( Ray ) / sizeof( float )) + 10];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( Ray ) / sizeof( float )) + 10];
 	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", origin.x, origin.y, direction.x, direction.y );
 
 	return str;
@@ -55,7 +55,7 @@ bool AABB::operator==( const AABB& other ) const {
 
 // Custom
 inline const char* AABB::ToString() const {
-	static char str[47 * (sizeof( AABB ) / sizeof( float )) + 10];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( AABB ) / sizeof( float )) + 10];
 	snprintf( str, sizeof( str ), "(%f, %f) (%f, %f)", origin.x, origin.y, extents.x, extents.y );
 
 	return str;
@@ -134,7 +134,7 @@ inline bool Circle::operator==( const Circle& other ) const {
 
 // Custom
 inline const char* Circle::ToString() const {
-	static char str[47 * (sizeof( Circle ) / sizeof( float )) + 6];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( Circle ) / sizeof( float )) + 6];
 	snprintf( str, sizeof( str ), "(%f, %f) %f", origin.x, origin.y, radius );
 
 	return str;

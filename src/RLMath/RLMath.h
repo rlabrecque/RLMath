@@ -5,14 +5,19 @@
 #include <cstdio>
 #include <math.h>
 
-struct Vec2;
-struct Vec3;
-struct Vec4;
-
+// Misc, needs to be moved.
+// Modern ARRAY_SIZE
 template <typename T, size_t N>
 constexpr size_t countof( T( &)[N] ) {
 	return N;
 }
+
+constexpr int FLOAT_MAX_PRINT_LENGTH = 47;
+
+struct Vec2;
+struct Vec3;
+struct Vec4;
+struct Matrix4x4;
 
 //=====================================================================================================================
 // Defines

@@ -69,7 +69,7 @@ inline Vec2 Vec2::operator/=( const float scalar ) {
 
 // Custom
 inline const char* Vec2::ToString() const {
-	static char str[47 * (sizeof( Vec2 ) / sizeof( float )) + 5];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( Vec2 ) / sizeof( float )) + 5];
 	snprintf( str, sizeof( str ), "(%f, %f)", x, y );
 
 	return str;
@@ -182,7 +182,7 @@ inline Vec3 Vec3::operator/=( const float scalar ) {
 
 // Custom
 inline const char* Vec3::ToString() const {
-	static char str[47 * (sizeof( Vec3 ) / sizeof( float )) + 5];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( Vec3 ) / sizeof( float )) + 5];
 	snprintf( str, sizeof( str ), "(%f, %f, %f)", x, y, z );
 
 	return str;
@@ -299,7 +299,7 @@ inline Vec4 Vec4::operator/=( const float scalar ) {
 
 // Custom
 inline const char* Vec4::ToString() const {
-	static char str[47 * (sizeof( Vec4 ) / sizeof( float )) + 5];
+	static char str[FLOAT_MAX_PRINT_LENGTH * (sizeof( Vec4 ) / sizeof( float )) + 5];
 	snprintf( str, sizeof( str ), "(%f, %f, %f, %f)", x, y, z, w );
 
 	return str;

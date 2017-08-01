@@ -360,6 +360,9 @@
     <ClCompile Include="src\Scenes\CHomingMissile.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\RLMath\Matrix.cpp">
+      <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\ThirdParty\imgui\LICENSE">
