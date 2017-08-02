@@ -1,9 +1,8 @@
-#include "CHomingMissile.h"
-
+#include "pch.h"
+#include "CInputManager.h"
 #include "CRenderer.h"
-#define IMGUI_DISABLE_TEST_WINDOWS
+#include "CHomingMissile.h"
 #include "imgui.h"
-#undef IMGUI_DISABLE_TEST_WINDOWS
 
 const char * CHomingMissile::GetName() const {
 	return "Homing Missile";
@@ -21,13 +20,14 @@ void CHomingMissile::OnDisable() {
 	ClearMissiles();
 }
 
-void CHomingMissile::OnUpdate() {
-	if ( g_MousePosition.x > (WindowWidth - 320) ) {
+void CHomingMissile::OnUpdate( CInputManager& input ) {
+	Vec2 mousePos = input.GetMousePosition();
+	if ( mousePos.x > (WindowWidth - 320) ) {
 		return;
 	}
 
 	for ( auto&& missile : m_Missiles ) {
-		Vec2 diff = (g_MousePosition - missile.pos);
+		Vec2 diff = (mousePos - missile.pos);
 		if ( diff.length() < missile.radius ) { continue; }
 
 		missile.dir = diff.Normalize();
@@ -39,7 +39,6 @@ void CHomingMissile::OnInterface() {
 	if ( ImGui::Button( "Create Missile" ) ) {
 		Missile missile;
 		missile.pos = Vec2( static_cast<float>(rand() % WindowWidth), static_cast<float>(rand() % WindowHeight) );
-		missile.dir = (g_MousePosition - missile.pos).Normalize();
 		missile.radius = static_cast<float>(10 + (rand() % 20));
 		m_Missiles.push_back( missile );
 	}

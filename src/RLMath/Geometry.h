@@ -24,7 +24,7 @@ struct Ray {
 
 	// Custom
 	inline const char* ToString() const;
-	
+
 	// Distance and Collision detection
 	inline Vec2 GetClosestPoint( const Vec2 point ) const;
 
@@ -40,7 +40,7 @@ struct AABB {
 
 	// Constructors
 	constexpr AABB();
-	constexpr explicit AABB( Vec2 _center, Vec2 _extents);
+	constexpr explicit AABB( Vec2 _center, Vec2 _extents );
 
 	// Overrides
 	inline bool operator==( const AABB& other ) const;
@@ -91,9 +91,9 @@ inline bool RayIntersectsPoint( const Ray ray, const Vec2 point ) {
 	if ( point == ray.origin ) {
 		return true;
 	}
-	
+
 	Vec2 norm = (point - ray.origin).Normalize();
-	
+
 	float diff = Vec2::Dot( norm, ray.direction );
 	return diff >= (1 - 0.0005f);
 }
@@ -170,7 +170,6 @@ inline bool CircleIntersectsCircle( const Circle circle, const Circle circle2 ) 
 	return (circle.origin - circle2.origin).lengthSq() <= radiiSum * radiiSum;
 }
 
-
 //===================
 // Distance functions
 //===================
@@ -189,7 +188,7 @@ inline float DistanceBetween( const Vec2 point, const AABB aabb ) {
 
 	return pos.length();
 }
-inline float DistanceBetween( const AABB aabb, const Vec2 point ) { return DistanceBetween(point, aabb); }
+inline float DistanceBetween( const AABB aabb, const Vec2 point ) { return DistanceBetween( point, aabb ); }
 
 
 inline float DistanceBetween( const Vec2 point, const Ray ray ) {
@@ -205,6 +204,6 @@ inline float DistanceBetween( const AABB aabb, const AABB aabb2 ) {
 	Vec2 pos;
 	pos.x = RL_max( aMins.x - bMaxs.x, RL_max( 0, bMins.x - aMaxs.x ) );
 	pos.y = RL_max( aMins.y - bMaxs.y, RL_max( 0, bMins.y - aMaxs.y ) );
-		
+
 	return pos.length();
 }

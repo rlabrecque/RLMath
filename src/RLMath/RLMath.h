@@ -2,15 +2,7 @@
 #include <limits.h>
 #include <float.h>
 #include <stdio.h>
-#include <cstdio>
 #include <math.h>
-
-// Misc, needs to be moved.
-// Modern ARRAY_SIZE
-template <typename T, size_t N>
-constexpr size_t countof( T( &)[N] ) {
-	return N;
-}
 
 constexpr int FLOAT_MAX_PRINT_LENGTH = 47;
 

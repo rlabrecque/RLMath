@@ -1,9 +1,8 @@
-#include "CSierpinskiTriangle.h"
-
+#include "pch.h"
+#include "CInputManager.h"
 #include "CRenderer.h"
-#define IMGUI_DISABLE_TEST_WINDOWS
+#include "CSierpinskiTriangle.h"
 #include "imgui.h"
-#undef IMGUI_DISABLE_TEST_WINDOWS
 
 const char * CSierpinskiTriangle::GetName() const {
 	return "Sierpinski Triangle";
@@ -26,7 +25,7 @@ void CSierpinskiTriangle::OnEnable() {
 void CSierpinskiTriangle::OnDisable() {
 }
 
-void CSierpinskiTriangle::OnUpdate() {
+void CSierpinskiTriangle::OnUpdate( CInputManager& input ) {
 	static float t = 0;
 	/*Vec2 center = Vec2( (m_point1.x + m_point2.x + m_point3.x) / 3, (m_point1.y + m_point2.y + m_point3.y) / 3 );
 

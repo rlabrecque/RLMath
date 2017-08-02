@@ -4,7 +4,7 @@
 // abs
 //=================
 constexpr float RL_abs( const float f ) {
-	// todo remove '=' and this temp
+	// TODO: remove '=' and this temp
 	float ret = f;
 	return reinterpret_cast<float&>(reinterpret_cast<int&>(ret) &= ~(1 << 31));
 }

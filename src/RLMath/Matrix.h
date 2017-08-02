@@ -10,7 +10,8 @@ struct Matrix4x4 {
 
 	// Constructors
 	constexpr Matrix4x4();
-	constexpr explicit Matrix4x4( Vec4 row1, Vec4 row2, Vec4 row3, Vec4 row4 );
+	constexpr explicit Matrix4x4( float m[4][4] );
+	constexpr explicit Matrix4x4( const float m[4][4] );
 
 	static const Matrix4x4& identity;
 	static const Matrix4x4& zero;
@@ -47,12 +48,19 @@ struct Matrix4x4 {
 
 // Constructors
 constexpr Matrix4x4::Matrix4x4() : data{ 0 } {}
-constexpr Matrix4x4::Matrix4x4( Vec4 row1, Vec4 row2, Vec4 row3, Vec4 row4 ) :
+constexpr Matrix4x4::Matrix4x4( const float m[4][4] ) :
 	data{
-		row1.x, row1.y, row1.z, row1.w,
-		row2.x, row2.y, row2.z, row2.w,
-		row3.x, row3.y, row3.z, row3.w,
-		row4.x, row4.y, row4.z, row4.w } {}
+		m[0][0], m[0][1], m[0][2], m[0][3],
+		m[1][0], m[1][1], m[1][2], m[1][3],
+		m[2][0], m[2][1], m[2][2], m[2][3],
+		m[3][0], m[3][1], m[3][2], m[3][3] } {} // Because we're constexpr we can't just use memcpy :(
+
+constexpr Matrix4x4::Matrix4x4( float m[4][4] ) :
+	data{
+		m[0][0], m[0][1], m[0][2], m[0][3],
+		m[1][0], m[1][1], m[1][2], m[1][3],
+		m[2][0], m[2][1], m[2][2], m[2][3],
+		m[3][0], m[3][1], m[3][2], m[3][3] } {} // Because we're constexpr we can't just use memcpy :(
 
 // Overrides
 inline float& Matrix4x4::operator[]( const int index ) {

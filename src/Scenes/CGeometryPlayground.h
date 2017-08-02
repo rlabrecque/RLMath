@@ -1,5 +1,6 @@
 #pragma once
-#include "main.h"
+#include "pch.h"
+#include "CBaseScene.h"
 
 #include <vector>
 
@@ -9,7 +10,7 @@ public:
 	virtual void OnInit() override;
 	virtual void OnEnable() override;
 	virtual void OnDisable() override;
-	virtual void OnUpdate() override;
+	virtual void OnUpdate( CInputManager& input ) override;
 	virtual void OnInterface() override;
 	virtual void OnRender( CRenderer& renderer ) const override;
 
@@ -55,4 +56,5 @@ private:
 	EGeometry m_TestGeometry = (EGeometry)~k_EGeometry_None;
 	EGeometryTestMode m_TestMode = k_EGeometryTestMode_Collision;
 	Vec2 m_StartPos;
+	Vec2 m_CurrPos;
 };

@@ -1,12 +1,12 @@
+#include "pch.h"
 #include "CUserInterface.h"
 #include "CSceneManager.h"
 
-#define IMGUI_DISABLE_TEST_WINDOWS
 #include "imgui.h"
 #include "examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h"
-#undef IMGUI_DISABLE_TEST_WINDOWS
 
 bool CUserInterface::Init() {
+	SDL_Log( "Initializing CUserInterface\n" );
 	return ImGui_ImplSdlGL3_Init( g_Window );
 }
 
@@ -14,7 +14,7 @@ void CUserInterface::Shutdown() {
 	ImGui_ImplSdlGL3_Shutdown();
 }
 
-void CUserInterface::ProcessEvent( SDL_Event* event ) {
+void CUserInterface::ProcessEvent( SDL_Event& event ) {
 	ImGui_ImplSdlGL3_ProcessEvent( event );
 }
 
@@ -31,12 +31,15 @@ void CUserInterface::RunFrame( CSceneManager& sceneManager ) {
 	ImGui::Text( "Frametime: %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate );
 	ImGui::Separator();
 
-	for ( unsigned int i = 0; i < sceneManager.GetNumScenes(); ++i ) {
-		CBaseScene* scene = sceneManager.GetScenes()[i];
+	const unsigned int nScenes = sceneManager.GetNumScenes();
+	const unsigned int currentSceneIndex = sceneManager.GetCurrentSceneIndex();
+	const auto&& scenes = sceneManager.GetScenes();
+	for ( unsigned int i = 0; i < nScenes; ++i ) {
+		CBaseScene* scene = scenes[i];
 
-		ImGui::SetNextTreeNodeOpen( i == sceneManager.GetCurrentSceneIndex() );
+		ImGui::SetNextTreeNodeOpen( i == currentSceneIndex );
 		bool bIsOpen = ImGui::CollapsingHeader( scene->GetName() );
-		if ( i != sceneManager.GetCurrentSceneIndex() && bIsOpen ) {
+		if ( i != currentSceneIndex && bIsOpen ) {
 			sceneManager.ChangeScene(i);
 		}
 
@@ -48,6 +51,6 @@ void CUserInterface::RunFrame( CSceneManager& sceneManager ) {
 	ImGui::End();
 }
 
-void CUserInterface::Draw() {
+void CUserInterface::Render() {
 	ImGui::Render();
 }

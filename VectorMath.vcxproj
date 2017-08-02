@@ -84,13 +84,15 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnforceTypeConversionRules>false</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,12 +102,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnforceTypeConversionRules>false</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,13 +120,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnforceTypeConversionRules>false</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,13 +141,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src\;src\RLMath\;src\ThirdParty\;src\Scenes\;src\ThirdParty\SDL2\include\;src\ThirdParty\imgui\;src\ThirdParty\lest\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnforceTypeConversionRules>false</EnforceTypeConversionRules>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,8 +160,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\CBaseScene.h" />
+    <ClInclude Include="src\CEngine.h" />
+    <ClInclude Include="src\CInputManager.h" />
     <ClInclude Include="src\CUserInterface.h" />
-    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\CRenderer.h" />
     <ClInclude Include="src\RLMath\Geometry.h" />
     <ClInclude Include="src\RLMath\Geometry.inl" />
@@ -247,9 +258,14 @@
     <ClInclude Include="src\ThirdParty\SDL2\include\SDL_video.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CEngine.cpp" />
+    <ClCompile Include="src\CInputManager.cpp" />
     <ClCompile Include="src\CUserInterface.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\CRenderer.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\RLMath\Matrix.cpp" />
     <ClCompile Include="src\RLMath\Vectors.cpp" />
     <ClCompile Include="src\CSceneManager.cpp" />
@@ -257,7 +273,7 @@
     <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp" />
     <ClCompile Include="src\Scenes\CHomingMissile.cpp" />
     <ClCompile Include="src\Tests.cpp" />
-    <ClCompile Include="src\ThirdParty\GL\gl3w.c" />
+    <ClCompile Include="src\ThirdParty\GL\gl3w.cpp" />
     <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp" />
     <ClCompile Include="src\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="src\ThirdParty\imgui\imgui_demo.cpp">

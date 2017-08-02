@@ -35,6 +35,15 @@
     <Filter Include="Source Files\ThirdParty\SDL2\include">
       <UniqueIdentifier>{9e442453-9e39-452f-bf06-5bc8575efdf1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes\Geometry Playground">
+      <UniqueIdentifier>{ee9f508b-c50e-4ffb-9e15-1060abd93eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\Homing Missile">
+      <UniqueIdentifier>{203e173f-25d0-4ac9-8a79-698d127b8cb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\Siepinski Triangle">
+      <UniqueIdentifier>{acdcac61-4725-4fca-b092-30f04f8ab51e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RLMath\RLMath.h">
@@ -70,23 +79,8 @@
     <ClInclude Include="src\Tests.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\main.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ThirdParty\lest\lest.hpp">
       <Filter>Source Files\ThirdParty\lest</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RLMath\Geometry.inl">
-      <Filter>Source Files\RLMath</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RLMath\Vectors.inl">
-      <Filter>Source Files\RLMath</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Scenes\CSierpinskiTriangle.h">
-      <Filter>Source Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Scenes\CGeometryPlayground.h">
-      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\CRenderer.h">
       <Filter>Source Files</Filter>
@@ -96,12 +90,6 @@
     </ClInclude>
     <ClInclude Include="src\CSceneManager.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RLMath\Vectors.h">
-      <Filter>Source Files\RLMath</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RLMath\Geometry.h">
-      <Filter>Source Files\RLMath</Filter>
     </ClInclude>
     <ClInclude Include="src\ThirdParty\SDL2\include\SDL_config.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
@@ -313,8 +301,38 @@
     <ClInclude Include="src\ThirdParty\SDL2\include\SDL_clipboard.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
+    <ClInclude Include="src\CEngine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CBaseScene.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CInputManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\CSierpinskiTriangle.h">
+      <Filter>Source Files\Scenes\Siepinski Triangle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Scenes\CHomingMissile.h">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Scenes\Homing Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\CGeometryPlayground.h">
+      <Filter>Source Files\Scenes\Geometry Playground</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Vectors.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Geometry.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Geometry.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLMath\Vectors.h">
+      <Filter>Source Files\RLMath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -330,20 +348,11 @@
     <ClCompile Include="src\ThirdParty\imgui\imgui_draw.cpp">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\GL\gl3w.c">
-      <Filter>Source Files\ThirdParty\GL</Filter>
-    </ClCompile>
     <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
       <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
     </ClCompile>
     <ClCompile Include="src\Tests.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Scenes\CGeometryPlayground.cpp">
-      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="src\CRenderer.cpp">
       <Filter>Source Files</Filter>
@@ -351,16 +360,34 @@
     <ClCompile Include="src\CUserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RLMath\Vectors.cpp">
-      <Filter>Source Files\RLMath</Filter>
-    </ClCompile>
     <ClCompile Include="src\CSceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ThirdParty\GL\gl3w.cpp">
+      <Filter>Source Files\ThirdParty\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CInputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp">
+      <Filter>Source Files\Scenes\Siepinski Triangle</Filter>
+    </ClCompile>
     <ClCompile Include="src\Scenes\CHomingMissile.cpp">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Scenes\Homing Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\CGeometryPlayground.cpp">
+      <Filter>Source Files\Scenes\Geometry Playground</Filter>
     </ClCompile>
     <ClCompile Include="src\RLMath\Matrix.cpp">
+      <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLMath\Vectors.cpp">
       <Filter>Source Files\RLMath</Filter>
     </ClCompile>
   </ItemGroup>

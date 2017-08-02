@@ -1,5 +1,7 @@
 #pragma once
-#include "main.h"
+#include "pch.h"
+#include "CBaseScene.h"
+
 #include <array>
 
 constexpr unsigned int NUMSCENES = 3;
@@ -17,6 +19,6 @@ public:
 	const unsigned int GetNumScenes() const;
 
 private:
-	unsigned int m_CurrentScene;
+	unsigned int m_CurrentScene = 0;
 	std::array<CBaseScene*, NUMSCENES> m_Scenes;
 };

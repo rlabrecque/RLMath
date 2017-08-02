@@ -1,9 +1,9 @@
+#include "pch.h"
+#include "CInputManager.h"
+#include "CRenderer.h"
 #include "CGeometryPlayground.h"
 
-#include "CRenderer.h"
-#define IMGUI_DISABLE_TEST_WINDOWS
 #include "imgui.h"
-#undef IMGUI_DISABLE_TEST_WINDOWS
 
 const char *CGeometryPlayground::GetName() const {
 	return "Geometry Playground";
@@ -21,32 +21,34 @@ void CGeometryPlayground::OnDisable() {
 	ClearGeometry();
 }
 
-void CGeometryPlayground::OnUpdate() {
-	if ( g_MousePosition.x > (WindowWidth - 320) ) {
+void CGeometryPlayground::OnUpdate( CInputManager& input ) {
+	m_CurrPos = input.GetMousePosition();
+
+	if ( m_CurrPos.x > (WindowWidth - 320) ) {
 		return;
 	}
 
-	if ( g_MouseButtonDownThisFrame[0] ) {
-		m_StartPos = g_MousePosition;
+	if ( input.MouseButtonWentDown( EMouseButton::LEFT ) ) {
+		m_StartPos = m_CurrPos;
 	}
 
-	if ( g_MouseButtonUpThisFrame[0] ) {
+	if ( input.MouseButtonWentUp( EMouseButton::LEFT ) ) {
 		GeometryEntity entity;
 		entity.type = m_InsertMode;
 		entity.color = m_DrawColor;
 
 		switch ( m_InsertMode ) {
 		case k_EGeometry_Point:
-			entity.point = g_MousePosition;
+			entity.point = m_CurrPos;
 			break;
 		case k_EGeometry_Ray:
-			entity.ray = Ray( m_StartPos, g_MousePosition - m_StartPos );
+			entity.ray = Ray( m_StartPos, m_CurrPos - m_StartPos );
 			break;
 		case k_EGeometry_AABB:
-			entity.aabb = AABB::FromMinsMaxs( m_StartPos, g_MousePosition );
+			entity.aabb = AABB::FromMinsMaxs( m_StartPos, m_CurrPos );
 			break;
 		case k_EGeometry_Circle:
-			entity.circle = Circle( m_StartPos, (m_StartPos - g_MousePosition).length() );
+			entity.circle = Circle( m_StartPos, (m_StartPos - m_CurrPos).length() );
 			break;
 		}
 
@@ -139,16 +141,16 @@ void CGeometryPlayground::OnRender( CRenderer& renderer ) const {
 	else {
 		switch ( m_InsertMode ) {
 		case k_EGeometry_Point:
-			RenderInsertPoint(renderer, g_MousePosition);
+			RenderInsertPoint(renderer, m_CurrPos );
 			break;
 		case k_EGeometry_Ray:
-			RenderInsertRay( renderer, Ray( m_StartPos, g_MousePosition - m_StartPos ) );
+			RenderInsertRay( renderer, Ray( m_StartPos, m_CurrPos - m_StartPos ) );
 			break;
 		case k_EGeometry_AABB:
-			RenderInsertAABB( renderer, AABB::FromMinsMaxs( m_StartPos, g_MousePosition ) );
+			RenderInsertAABB( renderer, AABB::FromMinsMaxs( m_StartPos, m_CurrPos ) );
 			break;
 		case k_EGeometry_Circle:
-			RenderInsertCircle( renderer, Circle( m_StartPos, (m_StartPos - g_MousePosition).length() ) );
+			RenderInsertCircle( renderer, Circle( m_StartPos, (m_StartPos - m_CurrPos).length() ) );
 			break;
 		}
 	}
@@ -163,7 +165,6 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer, const Vec2 poi
 
 			if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( point, entity.point );
-				printf( "Distance: %f\n", DistanceBetween( point, entity.point ) );
 			}
 			break;
 		case k_EGeometry_Ray:
@@ -177,7 +178,7 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer, const Vec2 poi
 			renderer.DrawRay( entity.ray );
 
 			if ( (m_TestGeometry & k_EGeometry_Ray) && m_TestMode == k_EGeometryTestMode_Distance ) {
-				renderer.DrawLine( g_MousePosition, entity.ray.GetClosestPoint( g_MousePosition ) );
+				renderer.DrawLine( point, entity.ray.GetClosestPoint( point ) );
 			}
 			break;
 		case k_EGeometry_AABB:
@@ -192,7 +193,6 @@ void CGeometryPlayground::RenderInsertPoint( CRenderer& renderer, const Vec2 poi
 
 			if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( point, entity.aabb.GetClosestPoint( point ) );
-				printf( "Distance: %f\n", DistanceBetween( point, entity.aabb ) );
 			}
 			break;
 		case k_EGeometry_Circle:
@@ -279,7 +279,6 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer, const AABB aabb
 
 			if ( (m_TestGeometry & k_EGeometry_Point) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( entity.point, aabb.GetClosestPoint( entity.point ) );
-				printf( "Distance: %f\n", DistanceBetween( aabb, entity.point ) );
 			}
 			break;
 		case k_EGeometry_Ray:
@@ -304,7 +303,6 @@ void CGeometryPlayground::RenderInsertAABB( CRenderer& renderer, const AABB aabb
 
 			if ( (m_TestGeometry & k_EGeometry_AABB) && m_TestMode == k_EGeometryTestMode_Distance ) {
 				renderer.DrawLine( entity.aabb.origin, aabb.GetClosestPoint( entity.aabb ) );
-				printf( "Distance: %f\n", DistanceBetween( aabb, entity.aabb ) );
 			}
 			break;
 		case k_EGeometry_Circle:

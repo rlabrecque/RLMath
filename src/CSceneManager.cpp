@@ -1,10 +1,12 @@
+#include "pch.h"
 #include "CSceneManager.h"
-
 #include "CSierpinskiTriangle.h"
 #include "CGeometryPlayground.h"
 #include "CHomingMissile.h"
 
 bool CSceneManager::Init() {
+	SDL_Log( "Initializing CSceneManager\n" );
+
 	m_Scenes = {
 		new CGeometryPlayground,
 		new CSierpinskiTriangle,

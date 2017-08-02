@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CRenderer.h"
 #include "CSceneManager.h"
 #include "CUserInterface.h"
@@ -20,6 +21,8 @@ struct VertexObject {
 };
 
 static int Renderer_Init_Shaders() {
+	SDL_Log( "Initializing Shaders\n" );
+
 	const char *vertexShaderSource = R"glsl(
 #version 330 
 uniform vec2 viewPortSize;
@@ -55,7 +58,7 @@ void main() {
 	glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &success );
 	if ( !success ) {
 		glGetShaderInfoLog( vertexShader, 512, nullptr, infoLog );
-		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "ERROR::SHADER::VERTEX::COMPILATION_FAILED: %s\n", infoLog );
+		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Vertex Compilation failed: %s\n", infoLog );
 		return false;
 	}
 
@@ -65,7 +68,7 @@ void main() {
 	glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &success );
 	if ( !success ) {
 		glGetShaderInfoLog( fragmentShader, 512, nullptr, infoLog );
-		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED: %s\n", infoLog );
+		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Fragment Compilation failed: %s\n", infoLog );
 		return false;
 	}
 
@@ -76,7 +79,7 @@ void main() {
 	glGetProgramiv( s_ShaderProgram, GL_LINK_STATUS, &success );
 	if ( !success ) {
 		glGetProgramInfoLog( s_ShaderProgram, 512, nullptr, infoLog );
-		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "ERROR::SHADER::PROGRAM::COMPILATION_FAILED: %s\n", infoLog );
+		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Program Compilation failed: %s\n", infoLog );
 		return false;
 	}
 
@@ -87,12 +90,13 @@ void main() {
 }
 
 bool CRenderer::Init() {
+	SDL_Log( "Initializing CRenderer\n" );
+
 	// Create GL Context and initialize it
 	s_GLContext = SDL_GL_CreateContext( g_Window );
 	gl3wInit();
 	glDisable( GL_CULL_FACE );
 	glDisable( GL_DEPTH_TEST );
-	//glEnable( GL_PROGRAM_POINT_SIZE );
 	glEnable( GL_SCISSOR_TEST );
 	glEnable( GL_BLEND );
 	glBlendEquation( GL_FUNC_ADD );
@@ -138,7 +142,7 @@ void CRenderer::RunFrame( CSceneManager& sceneManager, CUserInterface& userInter
 	sceneManager.GetCurrentScene()->OnRender(*this);
 	bInDrawing = false;
 
-	userInterface.Draw();
+	userInterface.Render();
 
 	SDL_GL_SwapWindow( g_Window );
 }
@@ -175,7 +179,7 @@ void CRenderer::DrawPoint( Vec2 point ) {
 	glVertexAttribPointer( 1, 4, GL_FLOAT, GL_FALSE, sizeof( VertexObject ), (void*)(sizeof(Vec2)) );
 	glEnableVertexAttribArray( 1 );
 
-	glDrawArrays( GL_POINTS, 0, countof( points ) );
+	glDrawArrays( GL_POINTS, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
 void CRenderer::DrawLine( Vec2 start, Vec2 end ) {
@@ -197,7 +201,7 @@ void CRenderer::DrawLine( Vec2 start, Vec2 end ) {
 	glVertexAttribPointer( 1, 4, GL_FLOAT, GL_FALSE, sizeof( VertexObject ), (void*)(sizeof( Vec2 )) );
 	glEnableVertexAttribArray( 1 );
 
-	glDrawArrays( GL_LINES, 0, countof( points ) );
+	glDrawArrays( GL_LINES, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
 void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 bottomLeftVertex ) {
@@ -220,7 +224,7 @@ void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 botto
 	glVertexAttribPointer( 1, 4, GL_FLOAT, GL_FALSE, sizeof( VertexObject ), (void*)(sizeof( Vec2 )) );
 	glEnableVertexAttribArray( 1 );
 
-	glDrawArrays( GL_TRIANGLES, 0, countof(points) );
+	glDrawArrays( GL_TRIANGLES, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
 void CRenderer::DrawRay( Ray ray ) {
