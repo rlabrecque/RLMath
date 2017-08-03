@@ -404,5 +404,8 @@
     <None Include="src\RLMath\RLMath.inl">
       <Filter>Source Files\RLMath</Filter>
     </None>
+    <None Include="src\RLMath\Matrix.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </None>
   </ItemGroup>
 </Project>

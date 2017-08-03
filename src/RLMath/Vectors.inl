@@ -51,7 +51,7 @@ inline Vec2 Vec2::operator* ( const float scalar ) const {
 	return Vec2( x * scalar, y * scalar );
 }
 
-inline Vec2 Vec2::operator*=( const float scalar ) {
+inline Vec2& Vec2::operator*=( const float scalar ) {
 	x *= scalar;
 	y *= scalar;
 	return *this;
@@ -61,7 +61,7 @@ inline Vec2 Vec2::operator/ ( const float scalar ) const {
 	return Vec2( x / scalar, y / scalar );
 }
 
-inline Vec2 Vec2::operator/=( const float scalar ) {
+inline Vec2& Vec2::operator/=( const float scalar ) {
 	x /= scalar;
 	y /= scalar;
 	return *this;
@@ -162,7 +162,7 @@ inline Vec3 Vec3::operator*( const float scalar ) const {
 	return Vec3( x * scalar, y * scalar, z * scalar );
 }
 
-inline Vec3 Vec3::operator*=( const float scalar ) {
+inline Vec3& Vec3::operator*=( const float scalar ) {
 	x *= scalar;
 	y *= scalar;
 	z *= scalar;
@@ -173,7 +173,7 @@ inline Vec3 Vec3::operator/( const float scalar ) const {
 	return Vec3( x / scalar, y / scalar, z / scalar );
 }
 
-inline Vec3 Vec3::operator/=( const float scalar ) {
+inline Vec3& Vec3::operator/=( const float scalar ) {
 	x /= scalar;
 	y /= scalar;
 	z /= scalar;
@@ -277,7 +277,7 @@ inline Vec4 Vec4::operator*( const float scalar ) const {
 	return Vec4( x * scalar, y * scalar, z * scalar, w * scalar );
 }
 
-inline Vec4 Vec4::operator*=( const float scalar ) {
+inline Vec4& Vec4::operator*=( const float scalar ) {
 	x *= scalar;
 	y *= scalar;
 	z *= scalar;
@@ -289,7 +289,7 @@ inline Vec4 Vec4::operator/( const float scalar ) const {
 	return Vec4( x / scalar, y / scalar, z / scalar, w / scalar );
 }
 
-inline Vec4 Vec4::operator/=( const float scalar ) {
+inline Vec4& Vec4::operator/=( const float scalar ) {
 	x /= scalar;
 	y /= scalar;
 	z /= scalar;

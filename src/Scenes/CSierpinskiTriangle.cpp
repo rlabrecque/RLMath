@@ -13,10 +13,12 @@ void CSierpinskiTriangle::OnInit() {
 	m_point2 = Vec2( 700, 500 );
 	m_point3 = Vec2( 100, 500 );
 
-	m_Transform = Vec2::one;
 	m_Scale = Vec2::one;
-	m_Rot = 0;
-	m_bAutomaticallyScale = true;
+	m_Translate = Vec2::one;
+	m_Rot = Vec3::zero;
+
+	m_bAutomaticallyRotate = false;
+	m_bAutomaticallyScale = false;
 }
 
 void CSierpinskiTriangle::OnEnable() {
@@ -26,34 +28,24 @@ void CSierpinskiTriangle::OnDisable() {
 }
 
 void CSierpinskiTriangle::OnUpdate( CInputManager& input ) {
-	static float t = 0;
-	/*Vec2 center = Vec2( (m_point1.x + m_point2.x + m_point3.x) / 3, (m_point1.y + m_point2.y + m_point3.y) / 3 );
+	if ( m_bAutomaticallyRotate ) {
+		static float rotateT = 0;
 
-	m_point1 -= center;
-	m_point2 -= center;
-	m_point3 -= center;
+		m_Rot.z = RL_sin( rotateT ) * 2;
 
-	Matrix4x4 test2 = Matrix4x4::identity;
-	test2[{0, 0}] = RL_cos( theta );
-	test2[{0, 1}] = -RL_sin( theta );
-	test2[{1, 0}] = RL_sin( theta );
-	test2[{2, 2}] = -RL_cos( theta );
-	
-	m_point1 = test2.MultiplyPoint2x3( m_point1 );
-	m_point2 = test2.MultiplyPoint2x3( m_point2 );
-	m_point3 = test2.MultiplyPoint2x3( m_point3 );
-
-	m_point1 += center;
-	m_point2 += center;
-	m_point3 += center;*/
+		rotateT += 0.01f;
+	}
 
 	if ( m_bAutomaticallyScale ) {
-		const float s = 1 + RL_sin( t );
+		static float scaleT = 0;
+
+		const float s = 1 + RL_sin( scaleT );
 		m_Scale.x = s;
 		//m_Scale.y = s;
 
-		t += 0.02f;
+		scaleT += 0.01f;
 	}
+
 }
 
 void CSierpinskiTriangle::OnInterface() {
@@ -75,26 +67,29 @@ void CSierpinskiTriangle::OnInterface() {
 
 	ImGui::Separator();
 
-	ImGui::SliderFloat2( "Transform", m_Transform.data, -100.0f, 100.0f );
+	ImGui::SliderFloat2( "Translate", m_Translate.data, -100.0f, 100.0f );
+	ImGui::SliderAngle( "RotationX", &m_Rot.x, -180.0f, 180.0f );
+	ImGui::SliderAngle( "RotationY", &m_Rot.y, -180.0f, 180.0f );
+	ImGui::SliderAngle( "RotationZ", &m_Rot.z, -180.0f, 180.0f );
 	ImGui::SliderFloat2( "Scale", m_Scale.data, 0.01f, 4.0f );
-	ImGui::SliderAngle( "Rotation", &m_Rot );
 
+	ImGui::Checkbox( "Auto Rotate", &m_bAutomaticallyRotate );
 	ImGui::Checkbox( "Auto Scale", &m_bAutomaticallyScale );
 }
 
 void CSierpinskiTriangle::OnRender( CRenderer& renderer ) const {
-	Matrix4x4 m = Matrix4x4::Scale( m_Scale );
+	Matrix4x4 trsMatrix = Matrix4x4::TRS( Vec3( m_Translate ), m_Rot, Vec3( m_Scale ) );
 
-	Vec2 center = Vec2( (m_point1.x + m_point2.x + m_point3.x) / 3, (m_point1.y + m_point2.y + m_point3.y) / 3 );
+	const Vec2 center = Vec2( (m_point1.x + m_point2.x + m_point3.x) / 3, (m_point1.y + m_point2.y + m_point3.y) / 3 );
 
 	Vec2 newpoint1 = m_point1 - center;
 	Vec2 newpoint2 = m_point2 - center;
 	Vec2 newpoint3 = m_point3 - center;
-
-	newpoint1 = m.MultiplyPoint2x3( newpoint1 );
-	newpoint2 = m.MultiplyPoint2x3( newpoint2 );
-	newpoint3 = m.MultiplyPoint2x3( newpoint3 );
-
+	
+	newpoint1 = trsMatrix.MultiplyPoint2x4( newpoint1 );
+	newpoint2 = trsMatrix.MultiplyPoint2x4( newpoint2 );
+	newpoint3 = trsMatrix.MultiplyPoint2x4( newpoint3 );
+	
 	newpoint1 += center;
 	newpoint2 += center;
 	newpoint3 += center;

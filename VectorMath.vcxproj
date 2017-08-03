@@ -286,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\RLMath\Matrix.h" />
+    <None Include="src\RLMath\Matrix.inl" />
     <None Include="src\RLMath\RLMath.inl" />
     <None Include="src\ThirdParty\imgui\LICENSE" />
     <None Include="src\ThirdParty\imgui\README.md" />

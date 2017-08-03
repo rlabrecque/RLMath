@@ -38,9 +38,9 @@ struct Vec2 {
 	inline Vec2& operator-=( const Vec2& other );
 	inline Vec2 operator- () const;
 	inline Vec2 operator* ( const float scalar ) const;
-	inline Vec2 operator*=( const float scalar );
+	inline Vec2& operator*=( const float scalar );
 	inline Vec2 operator/ ( const float scalar ) const;
-	inline Vec2 operator/=( const float scalar );
+	inline Vec2& operator/=( const float scalar );
 
 	// Custom
 	inline const char* ToString() const;
@@ -93,9 +93,9 @@ struct Vec3 {
 	inline Vec3& operator-=( const Vec3& other );
 	inline Vec3 operator- () const;
 	inline Vec3 operator* ( const float scalar ) const;
-	inline Vec3 operator*=( const float scalar );
+	inline Vec3& operator*=( const float scalar );
 	inline Vec3 operator/ ( const float scalar ) const;
-	inline Vec3 operator/=( const float scalar );
+	inline Vec3& operator/=( const float scalar );
 
 	// Custom
 	inline const char* ToString() const;
@@ -142,9 +142,9 @@ struct Vec4 {
 	inline Vec4& operator-=( const Vec4& other );
 	inline Vec4 operator- () const;
 	inline Vec4 operator* ( const float scalar ) const;
-	inline Vec4 operator*=( const float scalar );
+	inline Vec4& operator*=( const float scalar );
 	inline Vec4 operator/ ( const float scalar ) const;
-	inline Vec4 operator/=( const float scalar );
+	inline Vec4& operator/=( const float scalar );
 
 	// Custom
 	inline const char* ToString() const;
