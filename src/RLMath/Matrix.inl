@@ -180,7 +180,8 @@ inline Matrix4x4& Matrix4x4::Inverse() {
 	const float A0113 = data[1][0] * data[3][1] - data[1][1] * data[3][0];
 	const float A0112 = data[1][0] * data[2][1] - data[1][1] * data[2][0];
 
-	const float det = 1 / (data[0][0] * (data[1][1] * A2323 - data[1][2] * A1323 + data[1][3] * A1223)
+	const float det = 1 /
+		(data[0][0] * (data[1][1] * A2323 - data[1][2] * A1323 + data[1][3] * A1223)
 		- data[0][1] * (data[1][0] * A2323 - data[1][2] * A0323 + data[1][3] * A0223)
 		+ data[0][2] * (data[1][0] * A1323 - data[1][1] * A0323 + data[1][3] * A0123)
 		- data[0][3] * (data[1][0] * A1223 - data[1][1] * A0223 + data[1][2] * A0123));
@@ -228,20 +229,27 @@ inline void Matrix4x4::SetColumn( const int index, const Vec4 column ) {
 }
 
 inline Vec3 Matrix4x4::MultiplyPoint3x4( Vec3 point ) const {
-	Vec3 result;
-	result.x = data[0][0] * point.x + data[0][1] * point.y + data[0][2] * point.z + data[0][3];
-	result.y = data[1][0] * point.x + data[1][1] * point.y + data[1][2] * point.z + data[1][3];
-	result.z = data[2][0] * point.x + data[2][1] * point.y + data[2][2] * point.z + data[2][3];
-	return result;
+	return Vec3(
+		data[0][0] * point.x + data[0][1] * point.y + data[0][2] * point.z + data[0][3],
+		data[1][0] * point.x + data[1][1] * point.y + data[1][2] * point.z + data[1][3],
+		data[2][0] * point.x + data[2][1] * point.y + data[2][2] * point.z + data[2][3]
+	);
 }
 
 inline Vec2 Matrix4x4::MultiplyPoint2x4( Vec2 point ) const {
-	Vec2 result;
-	result.x = data[0][0] * point.x + data[0][1] * point.y + data[0][2] * 0 + data[0][3];
-	result.y = data[1][0] * point.x + data[1][1] * point.y + data[1][2] * 0 + data[1][3];
-	return result;
+	return Vec2(
+		data[0][0] * point.x + data[0][1] * point.y + data[0][2] * 0 + data[0][3],
+		data[1][0] * point.x + data[1][1] * point.y + data[1][2] * 0 + data[1][3]
+	);
 }
 
+inline Vec3 Matrix4x4::MultiplyVector( Vec3 v ) const {
+	return Vec3(
+		data[0][0] * v.x + data[0][1] * v.y + data[0][2] * v.z,
+		data[1][0] * v.x + data[1][1] * v.y + data[1][2] * v.z,
+		data[2][0] * v.x + data[2][1] * v.y + data[2][2] * v.z
+	);
+}
 
 // Static functions
 inline Matrix4x4 Matrix4x4::Scale( Vec2 v ) {
@@ -281,7 +289,7 @@ inline Matrix4x4 Matrix4x4::Rotate( Vec3 v ) {
 		{ 0.0f,          0.0f,           0.0f, 1.0f }
 		} };
 
-	return ( Z * Y * X );
+	return (Z * Y * X);
 }
 
 inline Matrix4x4 Matrix4x4::Translate( Vec2 v ) {

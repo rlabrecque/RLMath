@@ -38,6 +38,7 @@ struct Matrix4x4 {
 
 	inline Vec2 MultiplyPoint2x4( Vec2 point ) const;
 	inline Vec3 MultiplyPoint3x4( Vec3 point ) const;
+	inline Vec3 MultiplyVector( Vec3 v ) const;
 
 	// Static functions
 	static inline Matrix4x4 Translate( Vec2 v );
