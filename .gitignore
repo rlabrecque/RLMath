@@ -1,7 +1,5 @@
-/[Dd]ebug/
-/[Rr]elease/
+/Build/Output/
 /ipch/
-/.vs/
+/Build/.vs/
 *.*sdf
 *.suo
-*.vcxproj.user

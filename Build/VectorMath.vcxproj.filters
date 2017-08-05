@@ -46,366 +46,366 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RLMath\RLMath.h">
+    <ClInclude Include="..\src\RLMath\RLMath.h">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\imconfig.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\imconfig.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\imgui.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\imgui.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\imgui_internal.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\imgui_internal.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\stb_rect_pack.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\stb_rect_pack.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\stb_textedit.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\stb_textedit.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\stb_truetype.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\stb_truetype.h">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\GL\gl3w.h">
+    <ClInclude Include="..\src\ThirdParty\GL\gl3w.h">
       <Filter>Source Files\ThirdParty\GL</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\GL\glcorearb.h">
+    <ClInclude Include="..\src\ThirdParty\GL\glcorearb.h">
       <Filter>Source Files\ThirdParty\GL</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h">
+    <ClInclude Include="..\src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h">
       <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tests.h">
+    <ClInclude Include="..\src\Tests.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\lest\lest.hpp">
+    <ClInclude Include="..\src\ThirdParty\lest\lest.hpp">
       <Filter>Source Files\ThirdParty\lest</Filter>
     </ClInclude>
-    <ClInclude Include="src\CRenderer.h">
+    <ClInclude Include="..\src\CRenderer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CUserInterface.h">
+    <ClInclude Include="..\src\CUserInterface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CSceneManager.h">
+    <ClInclude Include="..\src\CSceneManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_config.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_config.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_cpuinfo.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_cpuinfo.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_egl.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_egl.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_endian.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_endian.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_error.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_error.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_events.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_events.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_filesystem.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_filesystem.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_gamecontroller.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_gamecontroller.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_gesture.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_gesture.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_haptic.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_haptic.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_hints.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_hints.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_joystick.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_joystick.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_keyboard.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_keyboard.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_keycode.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_keycode.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_loadso.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_loadso.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_log.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_log.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_main.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_main.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_messagebox.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_messagebox.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_mouse.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_mouse.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_mutex.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_mutex.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_name.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_name.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengl.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengl.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengl_glext.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengl_glext.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles2.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles2.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles2_gl2.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles2_gl2.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles2_gl2ext.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles2_gl2ext.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles2_gl2platform.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles2_gl2platform.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_opengles2_khrplatform.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_opengles2_khrplatform.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_pixels.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_pixels.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_platform.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_platform.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_power.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_power.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_quit.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_quit.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_rect.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_rect.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_render.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_render.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_revision.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_revision.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_rwops.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_rwops.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_scancode.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_scancode.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_shape.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_shape.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_stdinc.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_stdinc.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_surface.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_surface.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_system.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_system.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_syswm.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_syswm.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_assert.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_assert.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_common.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_common.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_compare.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_compare.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_crc32.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_crc32.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_font.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_font.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_fuzzer.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_fuzzer.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_harness.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_harness.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_images.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_images.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_log.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_log.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_md5.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_md5.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_test_random.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_test_random.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_thread.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_thread.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_timer.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_timer.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_touch.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_touch.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_types.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_types.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_version.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_version.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_video.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_video.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\begin_code.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\begin_code.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\close_code.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\close_code.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_assert.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_assert.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_atomic.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_atomic.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_audio.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_audio.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_bits.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_bits.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_blendmode.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_blendmode.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\ThirdParty\SDL2\include\SDL_clipboard.h">
+    <ClInclude Include="..\src\ThirdParty\SDL2\include\SDL_clipboard.h">
       <Filter>Source Files\ThirdParty\SDL2\include</Filter>
     </ClInclude>
-    <ClInclude Include="src\CEngine.h">
+    <ClInclude Include="..\src\CEngine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CBaseScene.h">
+    <ClInclude Include="..\src\CBaseScene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CInputManager.h">
+    <ClInclude Include="..\src\CInputManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\pch.h">
+    <ClInclude Include="..\src\pch.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\CSierpinskiTriangle.h">
+    <ClInclude Include="..\src\Scenes\CSierpinskiTriangle.h">
       <Filter>Source Files\Scenes\Siepinski Triangle</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\CHomingMissile.h">
+    <ClInclude Include="..\src\Scenes\CHomingMissile.h">
       <Filter>Source Files\Scenes\Homing Missile</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scenes\CGeometryPlayground.h">
+    <ClInclude Include="..\src\Scenes\CGeometryPlayground.h">
       <Filter>Source Files\Scenes\Geometry Playground</Filter>
     </ClInclude>
-    <ClInclude Include="src\RLMath\Vectors.inl">
+    <ClInclude Include="..\src\RLMath\Vectors.inl">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
-    <ClInclude Include="src\RLMath\Geometry.h">
+    <ClInclude Include="..\src\RLMath\Geometry.h">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
-    <ClInclude Include="src\RLMath\Geometry.inl">
+    <ClInclude Include="..\src\RLMath\Geometry.inl">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
-    <ClInclude Include="src\RLMath\Vectors.h">
+    <ClInclude Include="..\src\RLMath\Vectors.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RLMath\Matrix.h">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RLMath\RLMath.inl">
+      <Filter>Source Files\RLMath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RLMath\Matrix.inl">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\imgui\imgui.cpp">
+    <ClCompile Include="..\src\ThirdParty\imgui\imgui.cpp">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\imgui\imgui_demo.cpp">
+    <ClCompile Include="..\src\ThirdParty\imgui\imgui_demo.cpp">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\imgui\imgui_draw.cpp">
+    <ClCompile Include="..\src\ThirdParty\imgui\imgui_draw.cpp">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
+    <ClCompile Include="..\src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
       <Filter>Source Files\ThirdParty\imgui\examples\sdl_opengl3_example</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tests.cpp">
+    <ClCompile Include="..\src\Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CRenderer.cpp">
+    <ClCompile Include="..\src\CRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CUserInterface.cpp">
+    <ClCompile Include="..\src\CUserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CSceneManager.cpp">
+    <ClCompile Include="..\src\CSceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ThirdParty\GL\gl3w.cpp">
+    <ClCompile Include="..\src\ThirdParty\GL\gl3w.cpp">
       <Filter>Source Files\ThirdParty\GL</Filter>
     </ClCompile>
-    <ClCompile Include="src\CEngine.cpp">
+    <ClCompile Include="..\src\CEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\pch.cpp">
+    <ClCompile Include="..\src\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CInputManager.cpp">
+    <ClCompile Include="..\src\CInputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\CSierpinskiTriangle.cpp">
+    <ClCompile Include="..\src\Scenes\CSierpinskiTriangle.cpp">
       <Filter>Source Files\Scenes\Siepinski Triangle</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\CHomingMissile.cpp">
+    <ClCompile Include="..\src\Scenes\CHomingMissile.cpp">
       <Filter>Source Files\Scenes\Homing Missile</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scenes\CGeometryPlayground.cpp">
+    <ClCompile Include="..\src\Scenes\CGeometryPlayground.cpp">
       <Filter>Source Files\Scenes\Geometry Playground</Filter>
     </ClCompile>
-    <ClCompile Include="src\RLMath\Matrix.cpp">
+    <ClCompile Include="..\src\RLMath\Matrix.cpp">
       <Filter>Source Files\RLMath</Filter>
     </ClCompile>
-    <ClCompile Include="src\RLMath\Vectors.cpp">
+    <ClCompile Include="..\src\RLMath\Vectors.cpp">
       <Filter>Source Files\RLMath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\ThirdParty\imgui\LICENSE">
+    <None Include="..\src\ThirdParty\imgui\LICENSE">
       <Filter>Source Files\ThirdParty\imgui</Filter>
     </None>
-    <None Include="src\ThirdParty\imgui\README.md">
+    <None Include="..\src\ThirdParty\imgui\README.md">
       <Filter>Source Files\ThirdParty\imgui</Filter>
-    </None>
-    <None Include="src\RLMath\Matrix.h">
-      <Filter>Source Files\RLMath</Filter>
-    </None>
-    <None Include="src\RLMath\RLMath.inl">
-      <Filter>Source Files\RLMath</Filter>
-    </None>
-    <None Include="src\RLMath\Matrix.inl">
-      <Filter>Source Files\RLMath</Filter>
     </None>
   </ItemGroup>
 </Project>
