@@ -144,7 +144,7 @@ void CRenderer::Shutdown() {
 	SDL_GL_DeleteContext( s_GLContext );
 }
 
-void CRenderer::RunFrame( float dt, CSceneManager& sceneManager, CUserInterface& userInterface) {
+void CRenderer::RunFrame( const float dt, CSceneManager& sceneManager, CUserInterface& userInterface) {
 	glViewport( 0, 0, WindowWidth, WindowHeight );
 	glClearColor( 0.1f, 0.1f, 0.1f, 1 );
 	glClear( GL_COLOR_BUFFER_BIT );
@@ -158,21 +158,21 @@ void CRenderer::RunFrame( float dt, CSceneManager& sceneManager, CUserInterface&
 	SDL_GL_SwapWindow( g_Window );
 }
 
-void CRenderer::SetDrawColor( Vec4 color ) {
+void CRenderer::SetDrawColor( const Vec4 color ) {
 	SDL_assert( bInDrawing );
 
 	s_DrawColor = color;
 }
 
-void CRenderer::SetDrawColor( Vec3 color ) {
+void CRenderer::SetDrawColor( const Vec3 color ) {
 	SetDrawColor( Vec4( color ) );
 }
 
-void CRenderer::SetDrawColor( unsigned char r, unsigned char g, unsigned char b ) {
+void CRenderer::SetDrawColor( const float r, const float g, const float b ) {
 	SetDrawColor( Vec4( r, g, b, 1 ) );
 }
 
-void CRenderer::DrawPoint( Vec2 point ) {
+void CRenderer::DrawPoint( const Vec2 point ) {
 	SDL_assert( bInDrawing );
 
 	static VertexObject points[1];
@@ -193,12 +193,16 @@ void CRenderer::DrawPoint( Vec2 point ) {
 	glDrawArrays( GL_POINTS, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
-void CRenderer::DrawLine( Vec2 start, Vec2 end ) {
+void CRenderer::DrawLine( const Vec2 start, const Vec2 end ) {
+	DrawLine( start, end, s_DrawColor, s_DrawColor );
+}
+
+void CRenderer::DrawLine( const Vec2 start, const Vec2 end, const Vec4 startColor, const Vec4 endColor ) {
 	SDL_assert( bInDrawing );
 
 	static VertexObject points[3];
-	points[0] = { start, s_DrawColor };
-	points[1] = { end, s_DrawColor };
+	points[0] = { start, startColor };
+	points[1] = { end, endColor };
 
 	glUseProgram( s_ShaderProgram );
 	glBindVertexArray( s_LineVAO );
@@ -215,13 +219,17 @@ void CRenderer::DrawLine( Vec2 start, Vec2 end ) {
 	glDrawArrays( GL_LINES, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
-void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 bottomLeftVertex ) {
+void CRenderer::DrawTriangle( const Vec2 topVertex, const Vec2 bottomRightVertex, const Vec2 bottomLeftVertex ) {
+	DrawTriangle( topVertex, bottomRightVertex, bottomLeftVertex, s_DrawColor, s_DrawColor, s_DrawColor );
+}
+
+void CRenderer::DrawTriangle( const Vec2 topVertex, const Vec2 bottomRightVertex, const Vec2 bottomLeftVertex, const Vec4 color1, const Vec4 color2, const Vec4 color3 ) {
 	SDL_assert( bInDrawing );
 
 	static VertexObject points[3];
-	points[0] = { topVertex, s_DrawColor };
-	points[1] = { bottomRightVertex, s_DrawColor };
-	points[2] = { bottomLeftVertex, s_DrawColor };
+	points[0] = { topVertex, color1 };
+	points[1] = { bottomRightVertex, color2 };
+	points[2] = { bottomLeftVertex, color3 };
 
 	glUseProgram( s_ShaderProgram );
 	glBindVertexArray( s_TriangleVAO );
@@ -238,11 +246,11 @@ void CRenderer::DrawTriangle( Vec2 topVertex, Vec2 bottomRightVertex, Vec2 botto
 	glDrawArrays( GL_TRIANGLES, 0, (sizeof( points ) / sizeof( VertexObject )) );
 }
 
-void CRenderer::DrawRay( Ray ray ) {
+void CRenderer::DrawRay( const Ray ray ) {
 	DrawLine( ray.origin, ray.origin + ray.direction * 10000 );
 }
 
-void CRenderer::DrawAABB( AABB aabb ) {
+void CRenderer::DrawAABB( const AABB aabb ) {
 	Vec2 mins = aabb.mins();
 	Vec2 maxs = aabb.maxs();
 
@@ -252,7 +260,7 @@ void CRenderer::DrawAABB( AABB aabb ) {
 	DrawLine( maxs, Vec2( maxs.x, mins.y ) );
 }
 
-void CRenderer::DrawCircle( Circle circle ) {
+void CRenderer::DrawCircle( const Circle circle ) {
 	float r2 = circle.radius * circle.radius;
 	for ( float cx = circle.radius, sy = 0; sy < cx; ++sy) {
 		DrawPoint( Vec2( circle.origin.x + cx, circle.origin.y + sy ) );

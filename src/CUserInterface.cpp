@@ -316,7 +316,7 @@ bool CUserInterface::ProcessEvent( SDL_Event& e ) {
 	return false;
 }
 
-void CUserInterface::RunFrame( float dt, CInputManager& inputManager, CSceneManager& sceneManager ) {
+void CUserInterface::RunFrame( const float dt, CInputManager& inputManager, CSceneManager& sceneManager ) {
 	ImGuiIO& io = ImGui::GetIO();
 
 	// Setup display size (every frame to accommodate for window resizing)

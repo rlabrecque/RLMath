@@ -9,6 +9,6 @@ public:
 	bool Init();
 	void Shutdown();
 	bool ProcessEvent( SDL_Event& event );
-	void RunFrame( float dt, CInputManager& inputManager, CSceneManager& sceneManager );
+	void RunFrame( const float dt, CInputManager& inputManager, CSceneManager& sceneManager );
 	void Render();
 };

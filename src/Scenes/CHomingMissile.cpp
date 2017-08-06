@@ -20,7 +20,7 @@ void CHomingMissile::OnDisable() {
 	ClearMissiles();
 }
 
-void CHomingMissile::OnUpdate( float dt, CInputManager& input ) {
+void CHomingMissile::OnUpdate( const float dt, CInputManager& input ) {
 	Vec2 mousePos = input.GetMousePosition();
 	if ( mousePos.x > (WindowWidth - 320) ) {
 		return;
@@ -31,7 +31,7 @@ void CHomingMissile::OnUpdate( float dt, CInputManager& input ) {
 		if ( diff.length() < missile.radius ) { continue; }
 
 		missile.dir = diff.Normalize();
-		missile.pos += missile.dir * m_MissileSpeed;
+		missile.pos += missile.dir * (dt * m_MissileSpeed);
 	}
 }
 
@@ -43,7 +43,7 @@ void CHomingMissile::OnInterface() {
 		m_Missiles.push_back( missile );
 	}
 
-	ImGui::SliderFloat( "Speed", &m_MissileSpeed, 0, 5 );
+	ImGui::SliderFloat( "Speed", &m_MissileSpeed, 0, 200 );
 }
 
 void CHomingMissile::OnRender( CRenderer& renderer ) const {

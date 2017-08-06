@@ -29,23 +29,22 @@ void CSierpinskiTriangle::OnEnable() {
 void CSierpinskiTriangle::OnDisable() {
 }
 
-void CSierpinskiTriangle::OnUpdate( float dt, CInputManager& input ) {
+void CSierpinskiTriangle::OnUpdate( const float dt, CInputManager& input ) {
 	if ( m_bAutomaticallyRotate ) {
-		static float rotateT = 0;
+		static float t = 0;
+		m_Rot.z = RL_sin( t ) * 2;
 
-		m_Rot.z = RL_sin( rotateT ) * 2;
-
-		rotateT += 0.01f;
+		t += dt;
 	}
 
 	if ( m_bAutomaticallyScale ) {
-		static float scaleT = 0;
+		static float t = 0;
 
-		const float s = 1 + RL_sin( scaleT );
+		const float s = 1 + RL_sin( t );
 		m_Scale.x = s;
 		//m_Scale.y = s;
 
-		scaleT += 0.01f;
+		t += dt;
 	}
 
 }
@@ -91,18 +90,20 @@ void CSierpinskiTriangle::OnRender( CRenderer& renderer ) const {
 	Vec2 newpoint1 = m_point1 - center;
 	Vec2 newpoint2 = m_point2 - center;
 	Vec2 newpoint3 = m_point3 - center;
-	
+
 	newpoint1 = trsMatrix.MultiplyPoint2x4( newpoint1 );
 	newpoint2 = trsMatrix.MultiplyPoint2x4( newpoint2 );
 	newpoint3 = trsMatrix.MultiplyPoint2x4( newpoint3 );
-	
+
 	newpoint1 += center;
 	newpoint2 += center;
 	newpoint3 += center;
-	
+
+	renderer.DrawTriangle( newpoint1, newpoint2, newpoint3, Vec4( 1, 0, 0, 1 ), Vec4( 0, 1, 0, 1 ), Vec4( 0, 0, 1, 1 ) );
+
 	DrawSierpinskiTriangleRecursive( renderer, newpoint1, newpoint2, newpoint3, 0 );
 
-	renderer.SetDrawColor( 1, 1, 1 );
+	renderer.SetDrawColor( 0, 0, 0 );
 	renderer.DrawLine( newpoint1, newpoint2 );
 	renderer.DrawLine( newpoint2, newpoint3 );
 	renderer.DrawLine( newpoint3, newpoint1 );
@@ -112,12 +113,11 @@ void CSierpinskiTriangle::DrawSierpinskiTriangleRecursive( CRenderer& renderer, 
 	if ( iteration == m_Iterations ) { return; }
 	++iteration;
 
-	renderer.SetDrawColor( 0, 0, 0 );
-	renderer.DrawTriangle( A, (A + B) / 2, (A + C) / 2 );
+	/*renderer.DrawTriangle( A, (A + B) / 2, (A + C) / 2 );
 	renderer.DrawTriangle( B, (B + A) / 2, (B + C) / 2 );
-	renderer.DrawTriangle( C, (C + A) / 2, (C + B) / 2 );
+	renderer.DrawTriangle( C, (C + A) / 2, (C + B) / 2);*/
 
-	renderer.SetDrawColor( 1, 1, 1 );
+	renderer.SetDrawColor( 0, 0, 0 );
 	renderer.DrawTriangle( (A + B) / 2, (A + C) / 2, (B + C) / 2 );
 
 	DrawSierpinskiTriangleRecursive( renderer, A, (A + B) / 2, (A + C) / 2, iteration );

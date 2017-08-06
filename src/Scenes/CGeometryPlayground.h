@@ -10,7 +10,7 @@ public:
 	virtual void OnInit() override;
 	virtual void OnEnable() override;
 	virtual void OnDisable() override;
-	virtual void OnUpdate( float dt, CInputManager& input ) override;
+	virtual void OnUpdate( const float dt, CInputManager& input ) override;
 	virtual void OnInterface() override;
 	virtual void OnRender( CRenderer& renderer ) const override;
 

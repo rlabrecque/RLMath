@@ -9,7 +9,7 @@ public:
 	virtual void OnInit() = 0;
 	virtual void OnEnable() = 0;
 	virtual void OnDisable() = 0;
-	virtual void OnUpdate( float dt, CInputManager& input ) = 0;
+	virtual void OnUpdate( const float dt, CInputManager& input ) = 0;
 	virtual void OnInterface() = 0;
 	virtual void OnRender( CRenderer& renderer ) const = 0;
 };
