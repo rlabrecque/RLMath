@@ -29,31 +29,31 @@ struct VertexObject {
 static int Renderer_Init_Shaders() {
 	SDL_Log( "Initializing Shaders\n" );
 
-	const char *vertexShaderSource = R"glsl(#version 300 es
-uniform vec2 viewPortSize;
+	const char *vertexShaderSource =
+		"#version 300 es\n"
+		"uniform vec2 viewPortSize;\n"
+		""
+		"layout(location = 0) in vec2 position;\n"
+		"layout(location = 1) in vec4 vertexInputColor;\n"
+		""
+		"out vec4 vertexColor;\n"
+		""
+		"void main() {\n"
+		"	gl_PointSize = 1.0f;\n"
+		"	gl_Position = vec4( (2.0f * (position.x / viewPortSize.x) - 1.0f), -(2.0f * (position.y / viewPortSize.y) - 1.0f), 0.0f, 1.0f );\n"
+		"	vertexColor = vertexInputColor;\n"
+		"}\n";
 
-layout(location = 0) in vec2 position;
-layout(location = 1) in vec4 vertexInputColor;
-
-out vec4 vertexColor;
-
-void main() {
-	gl_PointSize = 1.0f;
-	gl_Position = vec4((2.0f * (position.x / viewPortSize.x) - 1.0f), -(2.0f * (position.y / viewPortSize.y) - 1.0f), 0.0f, 1.0f);
-	vertexColor = vertexInputColor;
-}
-)glsl";
-
-	const char *fragmentShaderSource = R"glsl(#version 300 es
-precision mediump float;
-
-in vec4 vertexColor;
-out vec4 FragColor;
-
-void main() {
-	FragColor = vertexColor;
-}
-)glsl";
+	const char *fragmentShaderSource = 
+		"#version 300 es\n"
+		"precision mediump float;\n"
+		""
+		"in vec4 vertexColor;\n"
+		"out vec4 FragColor;\n"
+		""
+		"void main() {\n"
+		"FragColor = vertexColor;\n"
+		"}\n";
 
 	int  success;
 	char infoLog[512];
