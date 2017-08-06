@@ -16,10 +16,16 @@
 #define SAFE_SHUTDOWN(__ptr__) if(__ptr__ != nullptr) __ptr__->Shutdown(); delete __ptr__, __ptr__ = nullptr
 #define SAFE_RELEASE(__ptr__) if(__ptr__ != nullptr) __ptr__->Release(), __ptr__ = nullptr
 
+#include <stdint.h>
+#include <cstdlib>
+
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
 #include "SDL.h"
 #include "RLMath.h"
 
-#include <stdint.h>
 
 constexpr unsigned int WindowWidth = 1280;
 constexpr unsigned int WindowHeight = 720;

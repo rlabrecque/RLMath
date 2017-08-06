@@ -11,7 +11,12 @@ int main( int argc, char* argv[] ) {
 		return -1;
 	}
 
-	engine.BeginUpdateLoop();
+#ifdef __EMSCRIPTEN__
+	static CEngine* pEngine = &engine;
+	emscripten_set_main_loop( [] { pEngine->OnUpdate(); }, 0, true );
+#else
+	while ( engine.OnUpdate() ) {}
+#endif
 
 	engine.Shutdown();
 

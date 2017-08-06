@@ -15,6 +15,8 @@ public:
 private:
 	void DrawSierpinskiTriangleRecursive( CRenderer& renderer, Vec2 A, Vec2 B, Vec2 C, int i ) const;
 
+	int m_Iterations;
+
 	Vec2 m_point1;
 	Vec2 m_point2;
 	Vec2 m_point3;

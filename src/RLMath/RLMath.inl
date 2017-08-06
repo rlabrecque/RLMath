@@ -4,9 +4,7 @@
 // abs
 //=================
 constexpr float RL_abs( const float f ) {
-	// TODO: remove '=' and this temp
-	float ret = f;
-	return reinterpret_cast<float&>(reinterpret_cast<int&>(ret) &= ~(1 << 31));
+	return ((f < 0) ? -f : f);
 }
 
 constexpr Vec2 RL_abs( const Vec2 vec ) {

@@ -41,7 +41,7 @@ const unsigned int CSceneManager::GetCurrentSceneIndex() const {
 }
 
 const unsigned int CSceneManager::GetNumScenes() const {
-	return m_Scenes.size();
+	return static_cast<unsigned int>(m_Scenes.size());
 }
 
 void CSceneManager::ChangeScene( const unsigned int index ) {

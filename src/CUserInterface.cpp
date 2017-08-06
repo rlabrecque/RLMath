@@ -7,19 +7,19 @@
 
 bool CUserInterface::Init() {
 	SDL_Log( "Initializing CUserInterface\n" );
-	return ImGui_ImplSdlGL3_Init( g_Window );
+	return ImGui_Impl_Init( g_Window );
 }
 
 void CUserInterface::Shutdown() {
-	ImGui_ImplSdlGL3_Shutdown();
+	ImGui_Impl_Shutdown();
 }
 
 void CUserInterface::ProcessEvent( SDL_Event& event ) {
-	ImGui_ImplSdlGL3_ProcessEvent( event );
+	ImGui_Impl_ProcessEvent( &event );
 }
 
 void CUserInterface::RunFrame( CSceneManager& sceneManager ) {
-	ImGui_ImplSdlGL3_NewFrame( g_Window );
+	ImGui_Impl_NewFrame( g_Window );
 
 	ImGui::SetNextWindowPos( Vec2( WindowWidth - 320, 0 ), ImGuiSetCond_Always );
 	ImGui::SetNextWindowSize( Vec2( 320, (float)WindowHeight), ImGuiSetCond_Always );

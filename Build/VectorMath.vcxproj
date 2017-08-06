@@ -7,20 +7,23 @@
     <RootNamespace>VectorMath</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
-  <Import Project="Default.props" />
+  <Import Project="Platforms.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="Default.props" />
+  </ImportGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)'=='Debug'">
-    <Import Project="Debug.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)'=='Release'">
-    <Import Project="Release.props" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Platform)'=='Win32'">
     <Import Project="Win32.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Platform)'=='x64'">
     <Import Project="Win64.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)'=='Debug'">
+    <Import Project="Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)'=='Release'">
+    <Import Project="Release.props" />
   </ImportGroup>
   <ItemGroup>
     <ClInclude Include="..\src\CBaseScene.h" />

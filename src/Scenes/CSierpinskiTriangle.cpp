@@ -17,6 +17,8 @@ void CSierpinskiTriangle::OnInit() {
 	m_Translate = Vec2::one;
 	m_Rot = Vec3::zero;
 
+	m_Iterations = 6;
+
 	m_bAutomaticallyRotate = false;
 	m_bAutomaticallyScale = false;
 }
@@ -75,6 +77,10 @@ void CSierpinskiTriangle::OnInterface() {
 
 	ImGui::Checkbox( "Auto Rotate", &m_bAutomaticallyRotate );
 	ImGui::Checkbox( "Auto Scale", &m_bAutomaticallyScale );
+
+	ImGui::Separator();
+
+	ImGui::SliderInt( "Iterations", &m_Iterations, 1, 8 );
 }
 
 void CSierpinskiTriangle::OnRender( CRenderer& renderer ) const {
@@ -103,7 +109,7 @@ void CSierpinskiTriangle::OnRender( CRenderer& renderer ) const {
 }
 
 void CSierpinskiTriangle::DrawSierpinskiTriangleRecursive( CRenderer& renderer, Vec2 A, Vec2 B, Vec2 C, int iteration ) const {
-	if ( iteration == 6 ) { return; }
+	if ( iteration == m_Iterations ) { return; }
 	++iteration;
 
 	renderer.SetDrawColor( 0, 0, 0 );

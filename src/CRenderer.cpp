@@ -2,7 +2,13 @@
 #include "CRenderer.h"
 #include "CSceneManager.h"
 #include "CUserInterface.h"
+
+#ifdef __EMSCRIPTEN__
+#include <GLES3/gl3.h>
+#include <GLES3/gl2ext.h>
+#else
 #include "GL\gl3w.h"
+#endif // __EMSCRIPTEN__
 
 static Vec4 s_DrawColor = Vec4( 1.0f, 1.0f, 1.0f, 1.0f );
 
@@ -23,23 +29,24 @@ struct VertexObject {
 static int Renderer_Init_Shaders() {
 	SDL_Log( "Initializing Shaders\n" );
 
-	const char *vertexShaderSource = R"glsl(
-#version 330 
+	const char *vertexShaderSource = R"glsl(#version 300 es
 uniform vec2 viewPortSize;
 
-layout (location = 0) in vec2 position;
-layout (location = 1) in vec4 vertexInputColor;
+layout(location = 0) in vec2 position;
+layout(location = 1) in vec4 vertexInputColor;
 
 out vec4 vertexColor;
 
 void main() {
-	gl_Position = vec4((2 * (position.x / viewPortSize.x) - 1), -(2 * (position.y / viewPortSize.y) - 1), 0.0f, 1.0f);
+	gl_PointSize = 1.0f;
+	gl_Position = vec4((2.0f * (position.x / viewPortSize.x) - 1.0f), -(2.0f * (position.y / viewPortSize.y) - 1.0f), 0.0f, 1.0f);
 	vertexColor = vertexInputColor;
 }
 )glsl";
 
-	const char *fragmentShaderSource = R"glsl(
-#version 330 core
+	const char *fragmentShaderSource = R"glsl(#version 300 es
+precision mediump float;
+
 in vec4 vertexColor;
 out vec4 FragColor;
 
@@ -94,7 +101,11 @@ bool CRenderer::Init() {
 
 	// Create GL Context and initialize it
 	s_GLContext = SDL_GL_CreateContext( g_Window );
+
+#ifndef __EMSCRIPTEN__
 	gl3wInit();
+#endif // !__EMSCRIPTEN__
+
 	glDisable( GL_CULL_FACE );
 	glDisable( GL_DEPTH_TEST );
 	glEnable( GL_SCISSOR_TEST );
@@ -116,7 +127,7 @@ bool CRenderer::Init() {
 	glGenVertexArrays( 1, &s_TriangleVAO );
 	
 	glUseProgram( s_ShaderProgram );
-	int vertexPositionLocation = glGetUniformLocation( s_ShaderProgram, "viewPortSize" );
+	const int vertexPositionLocation = glGetUniformLocation( s_ShaderProgram, "viewPortSize" );
 	glUniform2f( vertexPositionLocation, (float)WindowWidth, (float)WindowHeight );
 
 	return true;

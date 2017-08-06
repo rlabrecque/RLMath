@@ -21,7 +21,7 @@ struct Matrix4x4 {
 
 	inline Matrix4x4 operator* ( const Matrix4x4 other ) const;
 	inline Matrix4x4& operator*=( const Matrix4x4 other );
-	inline Vec4 Matrix4x4::operator*( const Vec4 v ) const;
+	inline Vec4 operator*( const Vec4 v ) const;
 
 	// Custom
 	inline const char* ToString() const;

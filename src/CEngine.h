@@ -9,7 +9,7 @@ class CEngine {
 public:
 	bool Init();
 	void Shutdown();
-	void BeginUpdateLoop();
+	bool OnUpdate();
 
 private:
 	CInputManager m_pInputManager;
