@@ -6,8 +6,6 @@
 
 #pragma once
 
-#include "RLMath.h"
-
 //---- Define assertion handler. Defaults to calling assert().
 //#define IM_ASSERT(_EXPR)  MyAssert(_EXPR)
 

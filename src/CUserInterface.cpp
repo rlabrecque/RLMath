@@ -281,8 +281,6 @@ bool CUserInterface::Init() {
 	SDL_VERSION( &wmInfo.version );
 	SDL_GetWindowWMInfo( g_Window, &wmInfo );
 	io.ImeWindowHandle = wmInfo.info.win.window;
-#else
-	(void)window;
 #endif
 
 	return true;
@@ -330,7 +328,13 @@ void CUserInterface::RunFrame( float dt, CInputManager& inputManager, CSceneMana
 	io.DeltaTime = dt;
 	
 	// Setup inputs
-	io.MousePos = (SDL_GetWindowFlags( g_Window ) & SDL_WINDOW_MOUSE_FOCUS) ? inputManager.GetMousePosition() : ImVec2( -1, -1 );
+	if ( SDL_GetWindowFlags( g_Window ) & SDL_WINDOW_MOUSE_FOCUS ) {
+		io.MousePos = inputManager.GetMousePosition();
+	}
+	else {
+		ImVec2( -1, -1 );
+	}
+
 	io.MouseDown[0] = inputManager.MouseButtonIsDown( EMouseButton::LEFT );
 	io.MouseDown[1] = inputManager.MouseButtonIsDown( EMouseButton::RIGHT );
 	io.MouseDown[2] = inputManager.MouseButtonIsDown( EMouseButton::MIDDLE );

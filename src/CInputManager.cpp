@@ -50,7 +50,7 @@ void CInputManager::ProcessEvent( SDL_Event& event ) {
 void CInputManager::OnUpdate( float dt ) {
 	memcpy( &m_MousePosPrev, &m_MousePos, sizeof( m_MousePos ) );
 	memcpy( &m_MouseButtonStatePrev, &m_MouseButtonState, sizeof( m_MouseButtonState ) );
-	m_MouseWheel = { 0, 0 };
+	m_MouseWheel = Vec2::zero;
 }
 
 Vec2 CInputManager::GetMousePosition() {

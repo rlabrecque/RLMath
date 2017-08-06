@@ -1,4 +1,9 @@
-mkdir Output/html 2>nul
+SET "EMSCRIPTEN_SDK_PATH=D:\Code\ThirdParty\emsdk-1.35.0-portable-64bit"
+SET "OUTPUT_DIR=Output\Emscripten"
+
+call "%EMSCRIPTEN_SDK_PATH%\emsdk_env.bat"
+
+mkdir %OUTPUT_DIR% 2>nul
 em++ -std=c++1z -O3 --emrun ^
 -s USE_SDL=2 -s USE_WEBGL2=1 -s DISABLE_EXCEPTION_CATCHING=0 ^
 -I"../src/" -I"../src/RLMath/" -I"../src/ThirdParty/" -I"../src/Scenes/" -I"../src/ThirdParty/imgui/" -I"../src/ThirdParty/lest/" ^
@@ -14,9 +19,8 @@ em++ -std=c++1z -O3 --emrun ^
 ..\src\ThirdParty\GL\gl3w.cpp ^
 ..\src\ThirdParty\imgui\imgui.cpp ^
 ..\src\ThirdParty\imgui\imgui_draw.cpp ^
-..\src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp ^
 ..\src\main.cpp ^
 ..\src\RLMath\Matrix.cpp ^
 ..\src\Tests.cpp ^
 ..\src\RLMath\Vectors.cpp ^
--o Output/html/index.html
+-o "%OUTPUT_DIR%\index.html"

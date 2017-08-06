@@ -22,10 +22,9 @@
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
 #endif
-
 #include "SDL.h"
-#include "RLMath.h"
 
+#include "RLMath.h"
 
 constexpr unsigned int WindowWidth = 1280;
 constexpr unsigned int WindowHeight = 720;
