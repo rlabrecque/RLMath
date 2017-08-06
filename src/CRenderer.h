@@ -8,7 +8,7 @@ class CRenderer {
 public:
 	bool Init();
 	void Shutdown();
-	void RunFrame( CSceneManager& sceneManager, CUserInterface& userInterface  );
+	void RunFrame( float dt, CSceneManager& sceneManager, CUserInterface& userInterface );
 
 	void SetDrawColor( Vec4 color );
 	void SetDrawColor( Vec3 color );

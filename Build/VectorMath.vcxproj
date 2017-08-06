@@ -47,7 +47,6 @@
     <ClInclude Include="..\src\Tests.h" />
     <ClInclude Include="..\src\ThirdParty\GL\gl3w.h" />
     <ClInclude Include="..\src\ThirdParty\GL\glcorearb.h" />
-    <ClInclude Include="..\src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h" />
     <ClInclude Include="..\src\ThirdParty\imgui\imconfig.h" />
     <ClInclude Include="..\src\ThirdParty\imgui\imgui.h" />
     <ClInclude Include="..\src\ThirdParty\imgui\imgui_internal.h" />
@@ -146,7 +145,6 @@
     <ClCompile Include="..\src\Scenes\CHomingMissile.cpp" />
     <ClCompile Include="..\src\Tests.cpp" />
     <ClCompile Include="..\src\ThirdParty\GL\gl3w.cpp" />
-    <ClCompile Include="..\src\ThirdParty\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp" />
     <ClCompile Include="..\src\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="..\src\ThirdParty\imgui\imgui_demo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

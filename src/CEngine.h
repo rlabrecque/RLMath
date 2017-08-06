@@ -12,8 +12,8 @@ public:
 	bool OnUpdate();
 
 private:
-	CInputManager m_pInputManager;
-	CRenderer m_pRenderer;
-	CUserInterface m_pUserInterface;
-	CSceneManager m_pSceneManager;
+	CInputManager m_InputManager;
+	CRenderer m_Renderer;
+	CUserInterface m_UserInterface;
+	CSceneManager m_SceneManager;
 };

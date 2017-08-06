@@ -29,7 +29,7 @@ void CSierpinskiTriangle::OnEnable() {
 void CSierpinskiTriangle::OnDisable() {
 }
 
-void CSierpinskiTriangle::OnUpdate( CInputManager& input ) {
+void CSierpinskiTriangle::OnUpdate( float dt, CInputManager& input ) {
 	if ( m_bAutomaticallyRotate ) {
 		static float rotateT = 0;
 

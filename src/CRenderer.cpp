@@ -144,7 +144,7 @@ void CRenderer::Shutdown() {
 	SDL_GL_DeleteContext( s_GLContext );
 }
 
-void CRenderer::RunFrame( CSceneManager& sceneManager, CUserInterface& userInterface) {
+void CRenderer::RunFrame( float dt, CSceneManager& sceneManager, CUserInterface& userInterface) {
 	glViewport( 0, 0, WindowWidth, WindowHeight );
 	glClearColor( 0.1f, 0.1f, 0.1f, 1 );
 	glClear( GL_COLOR_BUFFER_BIT );

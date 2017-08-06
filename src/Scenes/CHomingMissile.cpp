@@ -20,7 +20,7 @@ void CHomingMissile::OnDisable() {
 	ClearMissiles();
 }
 
-void CHomingMissile::OnUpdate( CInputManager& input ) {
+void CHomingMissile::OnUpdate( float dt, CInputManager& input ) {
 	Vec2 mousePos = input.GetMousePosition();
 	if ( mousePos.x > (WindowWidth - 320) ) {
 		return;

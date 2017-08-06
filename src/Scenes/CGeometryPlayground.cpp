@@ -21,7 +21,7 @@ void CGeometryPlayground::OnDisable() {
 	ClearGeometry();
 }
 
-void CGeometryPlayground::OnUpdate( CInputManager& input ) {
+void CGeometryPlayground::OnUpdate( float dt, CInputManager& input ) {
 	m_CurrPos = input.GetMousePosition();
 
 	if ( m_CurrPos.x > (WindowWidth - 320) ) {

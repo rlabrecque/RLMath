@@ -3,6 +3,8 @@
 
 SDL_Window* g_Window = nullptr;
 
+static double g_Time = 0.0f;
+
 bool CEngine::Init() {
 	SDL_Log( "Initializing CEngine\n" );
 
@@ -31,22 +33,22 @@ bool CEngine::Init() {
 		return false;
 	}
 	
-	if ( !m_pInputManager.Init() ) {
+	if ( !m_InputManager.Init() ) {
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize CInputManager\n" );
 		return false;
 	}
 
-	if ( !m_pRenderer.Init() ) {
+	if ( !m_Renderer.Init() ) {
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize CRenderer\n" );
 		return false;
 	}
 
-	if ( !m_pUserInterface.Init() ) {
+	if ( !m_UserInterface.Init() ) {
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize CUserInterface\n" );
 		return false;
 	}
 
-	if ( !m_pSceneManager.Init() ) {
+	if ( !m_SceneManager.Init() ) {
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize CSceneManager\n" );
 		return false;
 	}
@@ -56,17 +58,22 @@ bool CEngine::Init() {
 }
 
 void CEngine::Shutdown() {
-	m_pSceneManager.Shutdown();
-	m_pUserInterface.Shutdown();
-	m_pRenderer.Shutdown();
-	m_pInputManager.Shutdown();
+	m_SceneManager.Shutdown();
+	m_UserInterface.Shutdown();
+	m_Renderer.Shutdown();
+	m_InputManager.Shutdown();
 
 	SDL_DestroyWindow( g_Window );
 	SDL_Quit();
 }
 
 bool CEngine::OnUpdate() {
-	m_pInputManager.BeginFrame();
+	Uint32	time = SDL_GetTicks();
+	double current_time = time / 1000.0f;
+	float dt = (float)(current_time - g_Time);
+	g_Time = current_time;
+
+	m_InputManager.OnUpdate( dt );
 
 	SDL_Event e;
 	while ( SDL_PollEvent( &e ) ) {
@@ -77,13 +84,16 @@ bool CEngine::OnUpdate() {
 			return false;
 		}
 
-		m_pUserInterface.ProcessEvent( e );
-		m_pInputManager.ProcessEvent( e );
+		if ( m_UserInterface.ProcessEvent( e ) ) {
+			continue;
+		}
+
+		m_InputManager.ProcessEvent( e );
 	}
 
-	m_pSceneManager.GetCurrentScene()->OnUpdate( m_pInputManager );
-	m_pUserInterface.RunFrame( m_pSceneManager );
-	m_pRenderer.RunFrame( m_pSceneManager, m_pUserInterface );
+	m_SceneManager.GetCurrentScene()->OnUpdate( dt, m_InputManager );
+	m_UserInterface.RunFrame( dt, m_InputManager, m_SceneManager );
+	m_Renderer.RunFrame( dt, m_SceneManager, m_UserInterface );
 
 	/*if ( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ) {
 	SDL_Delay( (1000 / FRAMES_PER_SECOND) - fps.get_ticks() );

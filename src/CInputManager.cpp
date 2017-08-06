@@ -8,19 +8,30 @@ bool CInputManager::Init() {
 }
 
 void CInputManager::Shutdown() {
-
 }
 
 void CInputManager::ProcessEvent( SDL_Event& event ) {
 	switch ( event.type ) {
 	case SDL_MOUSEBUTTONDOWN:
 	{
-		m_MouseState[event.button.button - 1] = true;
+		m_MouseButtonState[event.button.button - 1] = true;
 	}
 		break;
+	case SDL_MOUSEWHEEL:
+	{
+		if ( event.wheel.y > 0 )
+			m_MouseWheel.y = 1;
+		if ( event.wheel.y < 0 )
+			m_MouseWheel.y = -1;
+		if ( event.wheel.x > 0 )
+			m_MouseWheel.x = 1;
+		if ( event.wheel.x < 0 )
+			m_MouseWheel.x = -1;
+	}
+	break;
 	case SDL_MOUSEBUTTONUP:
 	{
-		m_MouseState[event.button.button - 1] = false;
+		m_MouseButtonState[event.button.button - 1] = false;
 	}
 		break;
 	case SDL_MOUSEMOTION:
@@ -36,23 +47,28 @@ void CInputManager::ProcessEvent( SDL_Event& event ) {
 	const uint8_t* keyboardState = SDL_GetKeyboardState( NULL );
 }
 
-void CInputManager::BeginFrame() {
+void CInputManager::OnUpdate( float dt ) {
 	memcpy( &m_MousePosPrev, &m_MousePos, sizeof( m_MousePos ) );
-	memcpy( &m_MouseStatePrev, &m_MouseState, sizeof( m_MouseState ) );
+	memcpy( &m_MouseButtonStatePrev, &m_MouseButtonState, sizeof( m_MouseButtonState ) );
+	m_MouseWheel = { 0, 0 };
 }
 
 Vec2 CInputManager::GetMousePosition() {
 	return m_MousePos;
 }
 
+Vec2 CInputManager::GetMouseWheel() {
+	return m_MouseWheel;
+}
+
 bool CInputManager::MouseButtonIsDown( const EMouseButton button ) {
-	return m_MouseState[(uint8_t)button];
+	return m_MouseButtonState[(uint8_t)button];
 }
 
 bool CInputManager::MouseButtonWentDown( const EMouseButton button ) {
-	return (m_MouseState[(uint8_t)button] && !m_MouseStatePrev[(uint8_t)button]);
+	return (m_MouseButtonState[(uint8_t)button] && !m_MouseButtonStatePrev[(uint8_t)button]);
 }
 
 bool CInputManager::MouseButtonWentUp( const EMouseButton button ) {
-	return (!m_MouseState[(uint8_t)button] && m_MouseStatePrev[(uint8_t)button]);
+	return (!m_MouseButtonState[(uint8_t)button] && m_MouseButtonStatePrev[(uint8_t)button]);
 }

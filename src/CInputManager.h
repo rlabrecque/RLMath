@@ -16,9 +16,10 @@ public:
 	bool Init();
 	void Shutdown();
 	void ProcessEvent( SDL_Event& event );
-	void BeginFrame();
+	void OnUpdate( float dt );
 
 	Vec2 GetMousePosition();
+	Vec2 GetMouseWheel();
 	bool MouseButtonIsDown( const EMouseButton button );
 	bool MouseButtonWentDown( const EMouseButton button );
 	bool MouseButtonWentUp( const EMouseButton button );
@@ -26,6 +27,7 @@ public:
 private:
 	Vec2 m_MousePos = Vec2( 0, 0 );
 	Vec2 m_MousePosPrev = Vec2( 0, 0 );
-	bool m_MouseState[(uint8_t)EMouseButton::TOTAL] = {};
-	bool m_MouseStatePrev[(uint8_t)EMouseButton::TOTAL] = {};
+	Vec2 m_MouseWheel = Vec2( 0, 0 );
+	bool m_MouseButtonState[(uint8_t)EMouseButton::TOTAL] = {};
+	bool m_MouseButtonStatePrev[(uint8_t)EMouseButton::TOTAL] = {};
 };
