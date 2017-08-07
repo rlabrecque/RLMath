@@ -22,16 +22,6 @@ constexpr float TAU = PI * 2;
 // Functions
 //=====================================================================================================================
 
-/// TODO MOVE DOWN and rename to degrees/radians
-constexpr float RL_Deg2Rad( const float deg ) {
-	return deg * TAU / 360.0f;
-}
-
-constexpr float RL_Rad2Deg( const float rad ) {
-	return rad * 360.0f / TAU;
-}
-///
-
 //=================
 // abs
 //=================
@@ -65,14 +55,39 @@ inline Vec3 RL_cos( const Vec3 vec );
 inline Vec4 RL_cos( const Vec4 vec );
 
 //=================
+// max
+//=================
+inline float RL_max( const float a, const float b );
+
+//=================
 // min
 //=================
 inline float RL_min( const float a, const float b );
 
 //=================
-// max
+// Pow
 //=================
-inline float RL_max( const float a, const float b );
+//Returns f raised to power p.
+inline float RL_Pow( const float f, const float p );
+
+//=================
+// Deg2Rad
+//=================
+constexpr float RL_Deg2Rad( const float deg ) {
+	return deg * TAU / 360.0f;
+}
+
+//=================
+// Rad2Deg
+//=================
+constexpr float RL_Rad2Deg( const float rad ) {
+	return rad * 360.0f / TAU;
+}
+
+//=================
+// Round
+//=================
+inline float RL_Round( const float f );
 
 #include "Vectors.h"
 #include "Matrix.h"

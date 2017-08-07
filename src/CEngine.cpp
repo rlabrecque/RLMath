@@ -3,7 +3,7 @@
 
 SDL_Window* g_Window = nullptr;
 
-static double g_Time = 0.0f;
+double g_CurrentTime = 0.0f;
 
 bool CEngine::Init() {
 	SDL_Log( "Initializing CEngine\n" );
@@ -70,8 +70,8 @@ void CEngine::Shutdown() {
 bool CEngine::OnUpdate() {
 	Uint32	time = SDL_GetTicks();
 	double current_time = time / 1000.0f;
-	float dt = (float)(current_time - g_Time);
-	g_Time = current_time;
+	float dt = (float)(current_time - g_CurrentTime);
+	g_CurrentTime = current_time;
 
 	m_InputManager.OnUpdate( dt );
 

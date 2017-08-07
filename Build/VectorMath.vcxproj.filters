@@ -38,6 +38,9 @@
     <Filter Include="Source Files\Scenes\Siepinski Triangle">
       <UniqueIdentifier>{acdcac61-4725-4fca-b092-30f04f8ab51e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes\Space-filling Curves">
+      <UniqueIdentifier>{c81fc2ee-59d5-4231-bc9f-910c694c71f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\RLMath\RLMath.h">
@@ -334,6 +337,12 @@
     <ClInclude Include="..\src\RLMath\Matrix.inl">
       <Filter>Source Files\RLMath</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Scenes\CSpaceFillingCurves.h">
+      <Filter>Source Files\Scenes\Space-filling Curves</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Color.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -386,6 +395,12 @@
     </ClCompile>
     <ClCompile Include="..\src\RLMath\Vectors.cpp">
       <Filter>Source Files\RLMath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\CSpaceFillingCurves.cpp">
+      <Filter>Source Files\Scenes\Space-filling Curves</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Color.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

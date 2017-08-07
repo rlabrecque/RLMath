@@ -77,6 +77,13 @@ inline Vec4 RL_cos( const Vec4 vec ) {
 }
 
 //=================
+// max
+//=================
+inline float RL_max( const float a, const float b ) {
+	return fmaxf( a, b );
+}
+
+//=================
 // min
 //=================
 inline float RL_min( const float a, const float b ) {
@@ -84,8 +91,13 @@ inline float RL_min( const float a, const float b ) {
 }
 
 //=================
-// max
+// Pow
 //=================
-inline float RL_max( const float a, const float b ) {
-	return fmaxf( a, b );
+inline float RL_Pow( const float f, const float p ) {
+	return powf( f, p );
 }
+
+//=================
+// Round
+//=================
+inline float RL_Round( const float f );

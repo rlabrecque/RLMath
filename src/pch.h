@@ -24,9 +24,21 @@
 #endif
 #include "SDL.h"
 
+typedef uint8_t  uint8;
+typedef uint16_t uint16;
+typedef uint32_t uint;
+typedef uint32_t uint32;
+typedef uint64_t uint64;
+
+typedef int8_t  int8;
+typedef int16_t int16;
+typedef int32_t int32;
+typedef int64_t int64;
+
 #include "RLMath.h"
 
 constexpr unsigned int WindowWidth = 1280;
 constexpr unsigned int WindowHeight = 720;
 
+extern double g_CurrentTime;
 extern SDL_Window* g_Window;

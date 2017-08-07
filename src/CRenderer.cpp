@@ -64,7 +64,7 @@ static int Renderer_Init_Shaders() {
 
 	glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &success );
 	if ( !success ) {
-		glGetShaderInfoLog( vertexShader, 512, nullptr, infoLog );
+		glGetShaderInfoLog( vertexShader, sizeof( infoLog ), nullptr, infoLog );
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Vertex Compilation failed: %s\n", infoLog );
 		return false;
 	}
@@ -74,7 +74,7 @@ static int Renderer_Init_Shaders() {
 	glCompileShader( fragmentShader );
 	glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &success );
 	if ( !success ) {
-		glGetShaderInfoLog( fragmentShader, 512, nullptr, infoLog );
+		glGetShaderInfoLog( fragmentShader, sizeof( infoLog ), nullptr, infoLog );
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Fragment Compilation failed: %s\n", infoLog );
 		return false;
 	}
@@ -85,7 +85,7 @@ static int Renderer_Init_Shaders() {
 	glLinkProgram( s_ShaderProgram );
 	glGetProgramiv( s_ShaderProgram, GL_LINK_STATUS, &success );
 	if ( !success ) {
-		glGetProgramInfoLog( s_ShaderProgram, 512, nullptr, infoLog );
+		glGetProgramInfoLog( s_ShaderProgram, sizeof( infoLog ), nullptr, infoLog );
 		SDL_LogError( SDL_LOG_CATEGORY_APPLICATION, "Shader Program Compilation failed: %s\n", infoLog );
 		return false;
 	}
