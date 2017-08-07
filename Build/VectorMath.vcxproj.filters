@@ -41,6 +41,9 @@
     <Filter Include="Source Files\Scenes\Space-filling Curves">
       <UniqueIdentifier>{c81fc2ee-59d5-4231-bc9f-910c694c71f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scenes\H Tree">
+      <UniqueIdentifier>{fae370d8-a0f0-4614-a415-d03bdcc65328}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\RLMath\RLMath.h">
@@ -343,6 +346,9 @@
     <ClInclude Include="..\src\Color.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Scenes\CHTree.h">
+      <Filter>Source Files\Scenes\H Tree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -401,6 +407,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Color.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Scenes\CHTree.cpp">
+      <Filter>Source Files\Scenes\H Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

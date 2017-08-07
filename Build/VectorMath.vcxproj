@@ -46,6 +46,7 @@
     <ClInclude Include="..\src\Scenes\CSierpinskiTriangle.h" />
     <ClInclude Include="..\src\Scenes\CHomingMissile.h" />
     <ClInclude Include="..\src\Scenes\CSpaceFillingCurves.h" />
+    <ClInclude Include="..\src\Scenes\CHTree.h" />
     <ClInclude Include="..\src\Tests.h" />
     <ClInclude Include="..\src\ThirdParty\GL\gl3w.h" />
     <ClInclude Include="..\src\ThirdParty\GL\glcorearb.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="..\src\RLMath\Vectors.cpp" />
     <ClCompile Include="..\src\CSceneManager.cpp" />
     <ClCompile Include="..\src\Scenes\CGeometryPlayground.cpp" />
+    <ClCompile Include="..\src\Scenes\CHTree.cpp" />
     <ClCompile Include="..\src\Scenes\CSierpinskiTriangle.cpp" />
     <ClCompile Include="..\src\Scenes\CHomingMissile.cpp" />
     <ClCompile Include="..\src\Scenes\CSpaceFillingCurves.cpp" />

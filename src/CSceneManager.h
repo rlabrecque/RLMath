@@ -4,7 +4,7 @@
 
 #include <array>
 
-constexpr unsigned int NUMSCENES = 4;
+constexpr unsigned int NUMSCENES = 5;
 
 class CSceneManager {
 public:

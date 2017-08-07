@@ -4,6 +4,7 @@
 #include "CGeometryPlayground.h"
 #include "CHomingMissile.h"
 #include "CSpaceFillingCurves.h"
+#include "CHTree.h"
 
 bool CSceneManager::Init() {
 	SDL_Log( "Initializing CSceneManager\n" );
@@ -13,6 +14,7 @@ bool CSceneManager::Init() {
 		new CSierpinskiTriangle,
 		new CHomingMissile,
 		new CSpaceFillingCurves,
+		new CHTree,
 	};
 
 	for ( auto&& scene : m_Scenes ) {
